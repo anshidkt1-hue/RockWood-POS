@@ -622,10 +622,17 @@ const printBrandedDoc = () => {
     w.print();
   };
   w.onafterprint = () => w.close();
+  const imagePromises = [...w.document.images].map(img => {
+    if (img.complete) return Promise.resolve();
+    return Promise.race([
+      new Promise(r => { img.onload = img.onerror = r; }),
+      new Promise(r => setTimeout(r, 3000))
+    ]);
+  });
   Promise.all([
     w.document.fonts ? w.document.fonts.ready : Promise.resolve(),
-    ...[...w.document.images].map(img => img.complete ? Promise.resolve() : new Promise(r => { img.onload = img.onerror = r; })),
-  ]).then(() => setTimeout(finish, 250));
+    ...imagePromises,
+  ]).then(() => setTimeout(finish, 500));
 };
 
 // How many item rows fit per A4 page (rows are ~41px tall at 748px width).
