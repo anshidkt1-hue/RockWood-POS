@@ -1813,6 +1813,10 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
             </div>
           ))}
           <div style={{ marginBottom: 14 }}>
+            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Upload Image</label>
+            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setEditProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+          </div>
+          <div style={{ marginBottom: 14 }}>
             <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Category</label>
             <select style={{ ...S.select, width: "100%" }} value={editProduct.category} onChange={e => setEditProduct(p => ({ ...p, category: e.target.value }))}>
               {categories.map(c => <option key={c}>{c}</option>)}
@@ -1831,6 +1835,10 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
               <input style={S.input} placeholder={label} value={newProduct[k] || ""} onChange={e => setNewProduct(p => ({ ...p, [k]: e.target.value }))} />
             </div>
           ))}
+          <div style={{ marginBottom: 14 }}>
+            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Upload Image</label>
+            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setNewProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+          </div>
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Category</label>
             <select style={{ ...S.select, width: "100%" }} value={newProduct.category} onChange={e => setNewProduct(p => ({ ...p, category: e.target.value }))}>
