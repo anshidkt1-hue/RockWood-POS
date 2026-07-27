@@ -1814,13 +1814,23 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
           <FormMessage msg={editMsg} />
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
-            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setEditProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
-            {editProduct.image && (
-              <div style={{ marginTop: 10, padding: 10, background: "var(--surface)", borderRadius: 8, textAlign: "center" }}>
-                <img src={editProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: 120, objectFit: "contain" }} />
-                <div style={{ fontSize: 11, color: "var(--text-secondary)", marginTop: 6 }}>Image preview</div>
+            <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+              {editProduct.image ? (
+                <div style={{ position: "relative", width: 100, height: 100, borderRadius: 8, overflow: "hidden", background: "var(--surface)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <img src={editProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  <button onClick={() => setEditProduct(p => ({ ...p, image: "" }))} style={{ position: "absolute", top: 4, right: 4, width: 20, height: 20, borderRadius: "50%", background: "#000", border: "none", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, padding: 0, fontWeight: "bold" }}>✕</button>
+                </div>
+              ) : (
+                <label style={{ ...S.input, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", width: 100, height: 100, flexShrink: 0, color: "var(--text-secondary)" }}>
+                  <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setEditProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+                  <span style={{ textAlign: "center", fontSize: 12 }}>📷 Click to upload</span>
+                </label>
+              )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ margin: "0 0 8px 0", fontSize: 12, color: "var(--text-secondary)" }}>Image preview</p>
+                <p style={{ margin: 0, fontSize: 11, color: "var(--text-secondary)", lineHeight: 1.4 }}>Recommended: Square images work best. Max 5MB.</p>
               </div>
-            )}
+            </div>
           </div>
           {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
@@ -1843,13 +1853,23 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
           <FormMessage msg={addMsg} />
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
-            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setNewProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
-            {newProduct.image && (
-              <div style={{ marginTop: 10, padding: 10, background: "var(--surface)", borderRadius: 8, textAlign: "center" }}>
-                <img src={newProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: 200, objectFit: "contain" }} />
-                <div style={{ fontSize: 11, color: "var(--text-secondary)", marginTop: 6 }}>Image preview</div>
+            <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+              {newProduct.image ? (
+                <div style={{ position: "relative", width: 100, height: 100, borderRadius: 8, overflow: "hidden", background: "var(--surface)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <img src={newProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  <button onClick={() => setNewProduct(p => ({ ...p, image: "" }))} style={{ position: "absolute", top: 4, right: 4, width: 20, height: 20, borderRadius: "50%", background: "#000", border: "none", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, padding: 0, fontWeight: "bold" }}>✕</button>
+                </div>
+              ) : (
+                <label style={{ ...S.input, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", width: 100, height: 100, flexShrink: 0, color: "var(--text-secondary)" }}>
+                  <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setNewProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+                  <span style={{ textAlign: "center", fontSize: 12 }}>📷 Click to upload</span>
+                </label>
+              )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ margin: "0 0 8px 0", fontSize: 12, color: "var(--text-secondary)" }}>Image preview</p>
+                <p style={{ margin: 0, fontSize: 11, color: "var(--text-secondary)", lineHeight: 1.4 }}>Recommended: Square images work best. Max 5MB.</p>
               </div>
-            )}
+            </div>
           </div>
           {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock Quantity"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
