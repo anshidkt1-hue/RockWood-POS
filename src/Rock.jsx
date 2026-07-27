@@ -1480,7 +1480,7 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
   const [viewProduct, setViewProduct] = useState(null);
   const [editProduct, setEditProduct] = useState(null);
   const [showAdd, setShowAdd] = useState(false);
-  const [newProduct, setNewProduct] = useState({ name: "", sku: "", category: "Living Room", price: "", wholesalePrice: "", stock: "" });
+  const [newProduct, setNewProduct] = useState({ name: "", sku: "", category: "Living Room", price: "", wholesalePrice: "", stock: "", image: "" });
   const [addMsg, setAddMsg] = useState(null);
   const [editMsg, setEditMsg] = useState(null);
 
@@ -1668,7 +1668,7 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       setAddMsg({ type: "error", text: "Please fill in all required fields." });
       return;
     }
-    const p = { ...newProduct, id: Date.now(), price: +newProduct.price, wholesalePrice: +newProduct.wholesalePrice || +newProduct.price, stock: +newProduct.stock, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" };
+    const p = { ...newProduct, id: Date.now(), price: +newProduct.price, wholesalePrice: +newProduct.wholesalePrice || +newProduct.price, stock: +newProduct.stock, image: newProduct.image || "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" };
     setProducts(prev => [...prev, p]);
     setAddMsg({ type: "success", text: "Product added successfully!" });
     setTimeout(() => {
@@ -1806,7 +1806,7 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       {editProduct && (
         <Modal title="Edit Product" onClose={() => { setEditProduct(null); setEditMsg(null); }}>
           <FormMessage msg={editMsg} />
-          {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock"]].map(([k, label]) => (
+          {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock"], ["image", "Image URL"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
               <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>{label}</label>
               <input style={S.input} value={editProduct[k] ?? ""} onChange={e => setEditProduct(p => ({ ...p, [k]: ["price", "wholesalePrice", "stock"].includes(k) ? +e.target.value : e.target.value }))} />
@@ -1825,10 +1825,10 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       {showAdd && (
         <Modal title="Add New Product" onClose={() => { setShowAdd(false); setAddMsg(null); }}>
           <FormMessage msg={addMsg} />
-          {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock Quantity"]].map(([k, label]) => (
+          {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock Quantity"], ["image", "Image URL"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
               <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>{label}</label>
-              <input style={S.input} placeholder={label} value={newProduct[k]} onChange={e => setNewProduct(p => ({ ...p, [k]: e.target.value }))} />
+              <input style={S.input} placeholder={label} value={newProduct[k] || ""} onChange={e => setNewProduct(p => ({ ...p, [k]: e.target.value }))} />
             </div>
           ))}
           <div style={{ marginBottom: 16 }}>
