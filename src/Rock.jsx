@@ -502,17 +502,23 @@ const Icon = ({ name, size = 18, color }) => {
 
 // --- MODAL --------------------------------------------------------------------
 
-const Modal = ({ title, onClose, children, width = 480 }) => (
-  <div className="modal-overlay" style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1300 }}>
-    <div className="modal-box" style={{ background: "var(--surface)", borderRadius: 14, width, maxWidth: "95vw", maxHeight: "90vh", overflow: "auto", boxShadow: "0 20px 60px rgba(0,0,0,0.35)" }}>
-      <div style={{ padding: "18px 22px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--border)" }}>
-        <h3 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "var(--text-primary)" }}>{title}</h3>
-        <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-secondary)", padding: 4 }}><Icon name="x" size={18} /></button>
+const Modal = ({ title, onClose, children, width = 480 }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = "auto"; };
+  }, []);
+  return (
+    <div className="modal-overlay" style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1300 }}>
+      <div className="modal-box" style={{ background: "var(--surface)", borderRadius: 14, width, maxWidth: "95vw", maxHeight: "90vh", overflow: "auto", boxShadow: "0 20px 60px rgba(0,0,0,0.35)" }}>
+        <div style={{ padding: "18px 22px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--border)" }}>
+          <h3 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "var(--text-primary)" }}>{title}</h3>
+          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-secondary)", padding: 4 }}><Icon name="x" size={18} /></button>
+        </div>
+        <div style={{ padding: "18px 22px" }}>{children}</div>
       </div>
-      <div style={{ padding: "18px 22px" }}>{children}</div>
     </div>
-  </div>
-);
+  );
+};
 
 const FormMessage = ({ msg }) => msg ? (
   <div style={{
