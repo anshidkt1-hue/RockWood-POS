@@ -502,17 +502,23 @@ const Icon = ({ name, size = 18, color }) => {
 
 // --- MODAL --------------------------------------------------------------------
 
-const Modal = ({ title, onClose, children, width = 480 }) => (
-  <div className="modal-overlay" style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1300 }}>
-    <div className="modal-box" style={{ background: "var(--surface)", borderRadius: 14, width, maxWidth: "95vw", maxHeight: "90vh", overflow: "auto", boxShadow: "0 20px 60px rgba(0,0,0,0.35)" }}>
-      <div style={{ padding: "18px 22px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--border)" }}>
-        <h3 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "var(--text-primary)" }}>{title}</h3>
-        <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-secondary)", padding: 4 }}><Icon name="x" size={18} /></button>
+const Modal = ({ title, onClose, children, width = 480 }) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return () => { document.body.style.overflow = "auto"; };
+  }, []);
+  return (
+    <div className="modal-overlay" style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.45)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 1300 }}>
+      <div className="modal-box" style={{ background: "var(--surface)", borderRadius: 14, width, maxWidth: "95vw", maxHeight: "90vh", overflow: "auto", boxShadow: "0 20px 60px rgba(0,0,0,0.35)" }}>
+        <div style={{ padding: "18px 22px 14px", display: "flex", alignItems: "center", justifyContent: "space-between", borderBottom: "1px solid var(--border)" }}>
+          <h3 style={{ margin: 0, fontSize: 16, fontWeight: 700, color: "var(--text-primary)" }}>{title}</h3>
+          <button onClick={onClose} style={{ background: "none", border: "none", cursor: "pointer", color: "var(--text-secondary)", padding: 4 }}><Icon name="x" size={18} /></button>
+        </div>
+        <div style={{ padding: "18px 22px" }}>{children}</div>
       </div>
-      <div style={{ padding: "18px 22px" }}>{children}</div>
     </div>
-  </div>
-);
+  );
+};
 
 const FormMessage = ({ msg }) => msg ? (
   <div style={{
@@ -1480,7 +1486,7 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
   const [viewProduct, setViewProduct] = useState(null);
   const [editProduct, setEditProduct] = useState(null);
   const [showAdd, setShowAdd] = useState(false);
-  const [newProduct, setNewProduct] = useState({ name: "", sku: "", category: "Living Room", price: "", wholesalePrice: "", stock: "" });
+  const [newProduct, setNewProduct] = useState({ name: "", sku: "", category: "Living Room", price: "", wholesalePrice: "", stock: "", image: "" });
   const [addMsg, setAddMsg] = useState(null);
   const [editMsg, setEditMsg] = useState(null);
 
@@ -1668,7 +1674,7 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       setAddMsg({ type: "error", text: "Please fill in all required fields." });
       return;
     }
-    const p = { ...newProduct, id: Date.now(), price: +newProduct.price, wholesalePrice: +newProduct.wholesalePrice || +newProduct.price, stock: +newProduct.stock, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" };
+    const p = { ...newProduct, id: Date.now(), price: +newProduct.price, wholesalePrice: +newProduct.wholesalePrice || +newProduct.price, stock: +newProduct.stock, image: newProduct.image || "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" };
     setProducts(prev => [...prev, p]);
     setAddMsg({ type: "success", text: "Product added successfully!" });
     setTimeout(() => {
@@ -1806,6 +1812,26 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       {editProduct && (
         <Modal title="Edit Product" onClose={() => { setEditProduct(null); setEditMsg(null); }}>
           <FormMessage msg={editMsg} />
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
+            <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+              {editProduct.image ? (
+                <div style={{ position: "relative", width: 100, height: 100, borderRadius: 8, overflow: "hidden", background: "var(--surface)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <img src={editProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  <button onClick={() => setEditProduct(p => ({ ...p, image: "" }))} style={{ position: "absolute", top: 4, right: 4, width: 20, height: 20, borderRadius: "50%", background: "#000", border: "none", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, padding: 0, fontWeight: "bold" }}>✕</button>
+                </div>
+              ) : (
+                <label style={{ ...S.input, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", width: 100, height: 100, flexShrink: 0, color: "var(--text-secondary)" }}>
+                  <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setEditProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+                  <span style={{ textAlign: "center", fontSize: 12 }}>📷 Click to upload</span>
+                </label>
+              )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ margin: "0 0 8px 0", fontSize: 12, color: "var(--text-secondary)" }}>Image preview</p>
+                <p style={{ margin: 0, fontSize: 11, color: "var(--text-secondary)", lineHeight: 1.4 }}>Recommended: Square images work best. Max 5MB.</p>
+              </div>
+            </div>
+          </div>
           {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
               <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>{label}</label>
@@ -1825,10 +1851,30 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       {showAdd && (
         <Modal title="Add New Product" onClose={() => { setShowAdd(false); setAddMsg(null); }}>
           <FormMessage msg={addMsg} />
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
+            <div style={{ display: "flex", gap: 10, alignItems: "flex-start" }}>
+              {newProduct.image ? (
+                <div style={{ position: "relative", width: 100, height: 100, borderRadius: 8, overflow: "hidden", background: "var(--surface)", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <img src={newProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: "100%", objectFit: "contain" }} />
+                  <button onClick={() => setNewProduct(p => ({ ...p, image: "" }))} style={{ position: "absolute", top: 4, right: 4, width: 20, height: 20, borderRadius: "50%", background: "#000", border: "none", color: "#fff", cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", fontSize: 13, padding: 0, fontWeight: "bold" }}>✕</button>
+                </div>
+              ) : (
+                <label style={{ ...S.input, cursor: "pointer", display: "flex", alignItems: "center", justifyContent: "center", width: 100, height: 100, flexShrink: 0, color: "var(--text-secondary)" }}>
+                  <input type="file" accept="image/*" style={{ display: "none" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setNewProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+                  <span style={{ textAlign: "center", fontSize: 12 }}>📷 Click to upload</span>
+                </label>
+              )}
+              <div style={{ flex: 1, minWidth: 0 }}>
+                <p style={{ margin: "0 0 8px 0", fontSize: 12, color: "var(--text-secondary)" }}>Image preview</p>
+                <p style={{ margin: 0, fontSize: 11, color: "var(--text-secondary)", lineHeight: 1.4 }}>Recommended: Square images work best. Max 5MB.</p>
+              </div>
+            </div>
+          </div>
           {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock Quantity"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
               <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>{label}</label>
-              <input style={S.input} placeholder={label} value={newProduct[k]} onChange={e => setNewProduct(p => ({ ...p, [k]: e.target.value }))} />
+              <input style={S.input} placeholder={label} value={newProduct[k] || ""} onChange={e => setNewProduct(p => ({ ...p, [k]: e.target.value }))} />
             </div>
           ))}
           <div style={{ marginBottom: 16 }}>

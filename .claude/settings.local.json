@@ -17,7 +17,10 @@
       "Bash(git reset *)",
       "Bash(git config *)",
       "Bash(npm install *)",
-      "Bash(npm run *)"
+      "Bash(npm run *)",
+      "Bash(git push *)",
+      "Bash(gh pr create --title 'Add responsive mobile navigation with scroll-based hide/show and improve print preview' --body ' *)",
+      "Bash(gh pr create --base main --head feature/mobile-improvements --title 'Add responsive mobile navigation with scroll-based hide/show and improve print preview' --body ' *)"
     ]
   }
 }
