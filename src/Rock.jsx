@@ -1812,22 +1812,22 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       {editProduct && (
         <Modal title="Edit Product" onClose={() => { setEditProduct(null); setEditMsg(null); }}>
           <FormMessage msg={editMsg} />
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
+            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setEditProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+            {editProduct.image && (
+              <div style={{ marginTop: 10, padding: 10, background: "var(--surface)", borderRadius: 8, textAlign: "center" }}>
+                <img src={editProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: 120, objectFit: "contain" }} />
+                <div style={{ fontSize: 11, color: "var(--text-secondary)", marginTop: 6 }}>Image preview</div>
+              </div>
+            )}
+          </div>
           {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
               <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>{label}</label>
               <input style={S.input} value={editProduct[k] ?? ""} onChange={e => setEditProduct(p => ({ ...p, [k]: ["price", "wholesalePrice", "stock"].includes(k) ? +e.target.value : e.target.value }))} />
             </div>
           ))}
-          <div style={{ marginBottom: 14 }}>
-            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
-            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setEditProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
-            {editProduct.image && (
-              <div style={{ marginTop: 10, padding: 10, background: "var(--surface)", borderRadius: 8, textAlign: "center" }}>
-                <img src={editProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: 150, objectFit: "contain" }} />
-                <div style={{ fontSize: 11, color: "var(--text-secondary)", marginTop: 6 }}>Image preview</div>
-              </div>
-            )}
-          </div>
           <div style={{ marginBottom: 14 }}>
             <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Category</label>
             <select style={{ ...S.select, width: "100%" }} value={editProduct.category} onChange={e => setEditProduct(p => ({ ...p, category: e.target.value }))}>
@@ -1841,22 +1841,22 @@ function Inventory({ settings, products, setProducts, categories, setCategories 
       {showAdd && (
         <Modal title="Add New Product" onClose={() => { setShowAdd(false); setAddMsg(null); }}>
           <FormMessage msg={addMsg} />
+          <div style={{ marginBottom: 16 }}>
+            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
+            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setNewProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
+            {newProduct.image && (
+              <div style={{ marginTop: 10, padding: 10, background: "var(--surface)", borderRadius: 8, textAlign: "center" }}>
+                <img src={newProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: 200, objectFit: "contain" }} />
+                <div style={{ fontSize: 11, color: "var(--text-secondary)", marginTop: 6 }}>Image preview</div>
+              </div>
+            )}
+          </div>
           {[["name", "Product Name"], ["sku", "SKU"], ["price", `Retail Price (${settings.currency})`], ["wholesalePrice", `Wholesale Price (${settings.currency})`], ["stock", "Stock Quantity"]].map(([k, label]) => (
             <div key={k} style={{ marginBottom: 14 }}>
               <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>{label}</label>
               <input style={S.input} placeholder={label} value={newProduct[k] || ""} onChange={e => setNewProduct(p => ({ ...p, [k]: e.target.value }))} />
             </div>
           ))}
-          <div style={{ marginBottom: 14 }}>
-            <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Product Image</label>
-            <input type="file" accept="image/*" style={{ ...S.input, cursor: "pointer" }} onChange={e => { const file = e.target.files?.[0]; if (file) { const reader = new FileReader(); reader.onload = (evt) => setNewProduct(p => ({ ...p, image: evt.target?.result || "" })); reader.readAsDataURL(file); } }} />
-            {newProduct.image && (
-              <div style={{ marginTop: 10, padding: 10, background: "var(--surface)", borderRadius: 8, textAlign: "center" }}>
-                <img src={newProduct.image} alt="Preview" style={{ maxWidth: "100%", maxHeight: 150, objectFit: "contain" }} />
-                <div style={{ fontSize: 11, color: "var(--text-secondary)", marginTop: 6 }}>Image preview</div>
-              </div>
-            )}
-          </div>
           <div style={{ marginBottom: 16 }}>
             <label style={{ fontSize: 12, color: "var(--text-secondary)", display: "block", marginBottom: 6 }}>Category</label>
             <select style={{ ...S.select, width: "100%" }} value={newProduct.category} onChange={e => setNewProduct(p => ({ ...p, category: e.target.value }))}>
