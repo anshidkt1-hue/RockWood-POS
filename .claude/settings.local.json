@@ -1,26 +1,11 @@
 {
   "permissions": {
     "allow": [
-      "Bash(netstat -ano)",
-      "Bash(node -e ' *)",
-      "mcp__claude-in-chrome__navigate",
-      "mcp__claude-in-chrome__tabs_context_mcp",
-      "WebFetch(domain:rockwood.base44.app)",
-      "Bash(find \"C:\\\\Users\\\\wwwis\\\\AppData\\\\Local\\\\Temp\" -maxdepth 3 -iname \"*.png\" -newermt \"2026-07-08 20:00\" 2>/dev/null | head; find \"C:\\\\Users\\\\wwwis\\\\.claude\" -maxdepth 4 -iname \"*.png\" -o -maxdepth 4 -iname \"*.jpg\" 2>/dev/null | head)",
-      "PowerShell(New-Item -ItemType Directory -Force \"C:\\\\Users\\\\wwwis\\\\OneDrive\\\\Desktop\\\\RockWood\\\\public\\\\images\")",
-      "PowerShell($src = \"C:\\\\Users\\\\wwwis\\\\OneDrive\\\\Desktop\\\\RockWood\\\\images\"; $dst = \"C:\\\\Users\\\\wwwis\\\\OneDrive\\\\Desktop\\\\RockWood\\\\public\\\\images\"; Copy-Item \"$src\\\\Screenshot 2026-07-08 220130.png\" \"$dst\\\\elephant.png\" -Force; Copy-Item \"$src\\\\Screenshot 2026-07-08 220214.png\" \"$dst\\\\sofa.png\" -Force; Copy-Item \"$src\\\\Screenshot 2026-07-08 220236.png\" \"$dst\\\\stamp.png\" -Force; Copy-Item \"$src\\\\Screenshot 2026-07-08 220256.png\" \"$dst\\\\logo.png\" -Force; Remove-Item \"$dst\\\\SAVE-IMAGES-HERE.txt\" -Confirm:$false; Get-ChildItem $dst | Select-Object Name, Length)",
-      "PowerShell(@\\(Get-Content \"C:\\\\Users\\\\wwwis\\\\OneDrive\\\\Desktop\\\\RockWood\\\\src\\\\Rock.jsx\" -Encoding UTF8\\).Count)",
-      "mcp__Claude_Browser__preview_start",
-      "Bash(git init *)",
-      "Bash(git add *)",
-      "Bash(git commit *)",
-      "Bash(git reset *)",
-      "Bash(git config *)",
+      "Bash(find ~/ -name \"*rockwood*\" -o -name \"*pos*\" 2>/dev/null | head -20)",
+      "Bash(mv RockWood/* . && rmdir RockWood && ls -la)",
       "Bash(npm install *)",
-      "Bash(npm run *)",
-      "Bash(git push *)",
-      "Bash(gh pr create --title 'Add responsive mobile navigation with scroll-based hide/show and improve print preview' --body ' *)",
-      "Bash(gh pr create --base main --head feature/mobile-improvements --title 'Add responsive mobile navigation with scroll-based hide/show and improve print preview' --body ' *)"
+      "Bash(git add *)",
+      "Bash(git commit -m 'Create PosPerfume: Perfume shop POS system by adapting RockWood *)"
     ]
   }
 }
