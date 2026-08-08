@@ -658,113 +658,62 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
   const pages = paginateDocItems(items);
   let rowNo = 0;
   return (
-    <div className="branded-doc" style={{ display: "flex", flexDirection: "column", gap: 14, fontFamily: "'AppRupee', 'DM Sans', 'Segoe UI', sans-serif" }}>
+    <div className="branded-doc" style={{ display: "flex", flexDirection: "column", gap: 14, fontFamily: "Arial, sans-serif" }}>
       {pages.map((chunk, p) => {
         const isFirst = p === 0;
         const isLast = p === pages.length - 1;
         const startNo = rowNo;
         rowNo += chunk.length;
         return (
-      <div key={p} className="branded-page" style={{ background: DOC.bg, color: DOC.text, borderRadius: 12, overflow: "hidden" }}>
+      <div key={p} className="branded-page" style={{ background: "#fff", color: "#333", borderRadius: 4, overflow: "hidden", border: "1px solid #ddd" }}>
       {isFirst ? (<>
-      {/* Header — forest + elephant carrying timber */}
-      <div style={{ position: "relative", overflow: "hidden", padding: "22px 18px 18px" }}>
-        <DocImg src={DOC_IMG.elephant} style={{ position: "absolute", top: 0, right: 0, width: "48%", height: "100%", objectFit: "cover", objectPosition: "center 25%" }} />
-        <div style={{ position: "absolute", top: 0, right: 0, width: "48%", height: "100%", background: `linear-gradient(90deg, ${DOC.bg} 2%, rgba(22,49,29,0.35) 45%, rgba(22,49,29,0) 100%)` }} />
-        <div style={{ position: "relative", width: "64%", minWidth: 260 }}>
-          <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 18 }}>
-            <DocImg
-              src={DOC_IMG.logo}
-              style={{ width: 88, height: 88, objectFit: "contain", flexShrink: 0, mixBlendMode: "lighten" }}
-              fallback={
-                <div style={{ width: 78, height: 78, borderRadius: "50%", border: `3px solid ${DOC.gold}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, position: "relative", background: DOC.panelDark }}>
-                  <span style={{ fontSize: 40, fontWeight: 800, color: DOC.gold, fontFamily: "Georgia, serif" }}>R</span>
-                  <span style={{ position: "absolute", left: -4, bottom: 6, fontSize: 15 }}>🌿</span>
-                </div>
-              }
-            />
-            <div>
-              <div style={{ fontSize: 40, fontWeight: 600, letterSpacing: 3, lineHeight: 1.05, color: "#fff", fontFamily: DOC_FONT.display }}>ROCKWOOD</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: DOC.gold, letterSpacing: 2.5, marginTop: 5, fontFamily: DOC_FONT.display }}>— TIMBER AND FURNITURES —</div>
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 9, fontSize: 12.5, fontWeight: 500 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 9 }}><GoldDot><Icon name="phone" size={12} color={DOC.bg} /></GoldDot> Office - 818-999-1978</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 9 }}><GoldDot><Icon name="phone" size={12} color={DOC.bg} /></GoldDot> Manager - 8270293059</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 9 }}><GoldDot><span style={{ fontSize: 11, fontWeight: 800 }}>@</span></GoldDot> rockwoodsince1978@gmail.com</div>
-            </div>
-            <div style={{ borderLeft: `1.5px solid ${DOC.goldDim}`, paddingLeft: 14, fontSize: 12.5, fontWeight: 500, lineHeight: 1.75 }}>
-              <div style={{ display: "flex", gap: 9 }}>
-                <GoldDot><Icon name="pin" size={13} color={DOC.bg} /></GoldDot>
-                <span>GODOWN THOTTAM,<br />THEN THIRUPATHY 4 ROAD,<br />BELLATHY,<br />METTUPALAYAM - 03</span>
-              </div>
-            </div>
-          </div>
+      {/* Simple Header */}
+      <div style={{ borderBottom: "2px solid #333", padding: "20px", textAlign: "center", background: "#f9f9f9" }}>
+        <div style={{ fontSize: 20, fontWeight: "bold", marginBottom: 5, color: "#333" }}>POSPERFUME</div>
+        <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6, marginBottom: 10 }}>
+          Premium Fragrance Retail<br />
+          123 Fragrance Lane, Kochi, Kerala - 682014<br />
+          Phone: 9876543210 | Email: sales@posperfume.com
         </div>
+        <div style={{ fontSize: 16, fontWeight: "bold", marginTop: 10, color: "#333" }}>{docType}</div>
       </div>
       </>) : (
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px 12px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <DocImg src={DOC_IMG.logo} style={{ width: 42, height: 42, objectFit: "contain", mixBlendMode: "lighten" }} />
-          <div>
-            <div style={{ fontSize: 19, fontWeight: 600, letterSpacing: 2, lineHeight: 1.1, color: "#fff", fontFamily: DOC_FONT.display }}>ROCKWOOD</div>
-            <div style={{ fontSize: 9, fontWeight: 600, color: DOC.gold, letterSpacing: 1.5, fontFamily: DOC_FONT.display }}>— TIMBER AND FURNITURES —</div>
-          </div>
-        </div>
-        <div style={{ fontSize: 12, fontWeight: 600, color: DOC.textDim, letterSpacing: 0.5 }}>{docType} • {docNo} • Page {p + 1} of {pages.length}</div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 20px", borderBottom: "1px solid #ddd", background: "#f9f9f9" }}>
+        <div style={{ fontSize: 14, fontWeight: "bold", color: "#333" }}>POSPERFUME</div>
+        <div style={{ fontSize: 11, color: "#666" }}>{docType} • {docNo} • Page {p + 1} of {pages.length}</div>
       </div>
       )}
 
       <div style={{ padding: isFirst ? "2px 16px 16px" : "0 16px 16px" }}>
 
       {isFirst && (<>
-      {/* Title band */}
-      <DocPanel style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <div style={{ width: 54, height: 54, borderRadius: 12, border: `2px solid ${DOC.gold}`, background: DOC.panelDark, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Icon name="quote" size={28} color={DOC.gold} />
-          </div>
-          <div style={{ fontSize: 38, fontWeight: 600, letterSpacing: 3, color: "#fff", fontFamily: DOC_FONT.display }}>{docType}</div>
+      {/* Metadata section */}
+      <div style={{ padding: "15px 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 15, fontSize: 12, borderBottom: "1px solid #ddd" }}>
+        <div>
+          <div style={{ fontWeight: "bold", color: "#333" }}>{docType} NO:</div>
+          <div style={{ color: "#666" }}>{docNo}</div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-          {[["BILL NO.", docNo], ["DATE", date]].map(([l, v]) => (
-            <div key={l} style={{ display: "flex", borderRadius: 8, overflow: "hidden", border: `1px solid ${DOC.goldDim}`, fontSize: 13.5 }}>
-              <span style={{ background: DOC.gold, color: DOC.bg, fontWeight: 700, padding: "6px 14px", minWidth: 86, fontFamily: DOC_FONT.display, letterSpacing: 0.5 }}>{l}</span>
-              <span style={{ padding: "6px 16px", fontWeight: 600, background: DOC.panelDark, minWidth: 140, letterSpacing: 1 }}>{v}</span>
-            </div>
-          ))}
+        <div>
+          <div style={{ fontWeight: "bold", color: "#333" }}>DATE:</div>
+          <div style={{ color: "#666" }}>{date}</div>
         </div>
-      </DocPanel>
+      </div>
 
-      {/* Customer band */}
-      <DocPanel style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 10, border: `2px solid ${DOC.gold}`, background: DOC.panelDark, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Icon name="user" size={20} color={DOC.gold} />
-          </div>
-          <div>
-            <div style={{ fontSize: 13, color: DOC.gold, fontWeight: 600 }}>To</div>
-            <div style={{ fontSize: 20, fontWeight: 600, color: "#fff", fontFamily: DOC_FONT.display, letterSpacing: 1 }}>{customerName}</div>
-          </div>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 10, border: `2px solid ${DOC.gold}`, background: DOC.panelDark, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Icon name="quote" size={20} color={DOC.gold} />
-          </div>
-          <div style={{ background: DOC.gold, color: DOC.bg, fontWeight: 700, fontSize: 19, letterSpacing: 2, padding: "9px 26px", borderRadius: 10, fontFamily: DOC_FONT.display }}>{docType}</div>
-        </div>
-      </DocPanel>
+      {/* Customer section */}
+      <div style={{ padding: "15px 20px", borderBottom: "1px solid #ddd" }}>
+        <div style={{ fontWeight: "bold", color: "#333", marginBottom: 5, fontSize: 12 }}>CUSTOMER:</div>
+        <div style={{ color: "#666", fontSize: 13 }}>{customerName}</div>
+      </div>
       </>)}
 
       {/* Items table */}
-      <div style={{ border: `1.5px solid ${DOC.goldDim}`, borderRadius: 12, overflow: "hidden", marginBottom: 12 }}>
+      <div style={{ borderRadius: 4, overflow: "hidden", marginBottom: 12, border: "1px solid #ddd" }}>
         <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5 }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
             <thead>
               <tr>
-                {["S.NO", "ITEM DESCRIPTION", "ITEMS", "AMOUNT (₹)"].map((h, i) => (
-                  <th key={h} style={{ padding: "10px 14px", textAlign: i === 0 ? "center" : i === 3 ? "right" : i === 2 ? "center" : "left", fontSize: 12, fontWeight: 700, letterSpacing: 1, color: DOC.text, borderBottom: `1.5px solid ${DOC.goldDim}`, background: DOC.panelDark }}>{h}</th>
+                {["S.NO", "ITEM NAME", "CATEGORY", "QTY", "UNIT PRICE", "AMOUNT"].map((h, i) => (
+                  <th key={h} style={{ padding: "10px", textAlign: i === 0 ? "center" : i >= 3 ? "right" : "left", fontSize: 11, fontWeight: 700, color: "#333", borderBottom: "1px solid #ddd", background: "#f0f0f0" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -775,54 +724,45 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
                 const amount = qty * price;
                 return (
                   <tr key={i}>
-                    <td style={{ padding: "11px 14px", textAlign: "center", borderBottom: `1px solid rgba(233,166,58,0.25)`, borderRight: `1px solid rgba(233,166,58,0.25)` }}>{startNo + i + 1}.</td>
-                    <td style={{ padding: "11px 14px", borderBottom: `1px solid rgba(233,166,58,0.25)`, borderRight: `1px solid rgba(233,166,58,0.25)` }}>{it.name || "—"}</td>
-                    <td style={{ padding: "11px 14px", textAlign: "center", color: DOC.textDim, borderBottom: `1px solid rgba(233,166,58,0.25)`, borderRight: `1px solid rgba(233,166,58,0.25)` }}>{itemsHaveQty ? qty : "—"}</td>
-                    <td style={{ padding: "11px 14px", textAlign: "right", fontWeight: 600, borderBottom: `1px solid rgba(233,166,58,0.25)` }}>{isNaN(amount) ? "0" : amount.toLocaleString("en-IN")}</td>
+                    <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #eee", color: "#666" }}>{startNo + i + 1}</td>
+                    <td style={{ padding: "10px", borderBottom: "1px solid #eee", color: "#333", fontWeight: 500 }}>{it.name || "—"}</td>
+                    <td style={{ padding: "10px", borderBottom: "1px solid #eee", color: "#666", fontSize: 11 }}>{it.category || "—"}</td>
+                    <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #eee", color: "#666" }}>{itemsHaveQty ? qty : "—"}</td>
+                    <td style={{ padding: "10px", textAlign: "right", borderBottom: "1px solid #eee", color: "#666" }}>₹{price.toLocaleString("en-IN")}</td>
+                    <td style={{ padding: "10px", textAlign: "right", borderBottom: "1px solid #eee", color: "#333", fontWeight: 600 }}>₹{isNaN(amount) ? "0" : amount.toLocaleString("en-IN")}</td>
                   </tr>
                 );
               })}
               {isLast && (<>
-              <tr>
-                <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600, borderTop: `1px solid rgba(233,166,58,0.25)` }}>TOTAL ITEMS</td>
-                <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600, borderTop: `1px solid rgba(233,166,58,0.25)` }}>{Math.round(totalItems) || 0}</td>
+              <tr style={{ borderTop: "2px solid #333" }}>
+                <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>Subtotal:</td>
+                <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>₹{Math.round(totals.subtotal || 0).toLocaleString("en-IN")}</td>
               </tr>
               {(totals.discount || 0) > 0 && (
                 <tr>
-                  <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                  <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600 }}>DISCOUNT</td>
-                  <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600 }}>-{Math.round(totals.discount || 0).toLocaleString("en-IN")}</td>
+                  <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>Discount:</td>
+                  <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>-₹{Math.round(totals.discount || 0).toLocaleString("en-IN")}</td>
                 </tr>
               )}
               {(totals.tax || 0) > 0 && (
                 <tr>
-                  <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                  <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600 }}>TAX</td>
-                  <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600 }}>{Math.round(totals.tax || 0).toLocaleString("en-IN")}</td>
+                  <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>GST (18%):</td>
+                  <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>₹{Math.round(totals.tax || 0).toLocaleString("en-IN")}</td>
                 </tr>
               )}
-              <tr>
-                <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600 }}>TOTAL AMOUNT</td>
-                <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600 }}>{Math.round(totals.subtotal || 0).toLocaleString("en-IN")}</td>
-              </tr>
-              <tr>
-                <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                <td style={{ padding: "10px 14px", textAlign: "center", fontWeight: 800, background: DOC.gold, color: DOC.bg }}>TOTAL {docType}</td>
-                <td style={{ padding: "10px 14px", textAlign: "right", fontWeight: 800, background: DOC.gold, color: DOC.bg }}>{Math.round(totals.total || 0).toLocaleString("en-IN")}</td>
+              <tr style={{ background: "#f9f9f9", borderTop: "2px solid #333", borderBottom: "2px solid #333" }}>
+                <td colSpan={4} style={{ padding: "12px", textAlign: "right", fontWeight: 700, color: "#333", fontSize: 14 }}>TOTAL {docType}:</td>
+                <td colSpan={2} style={{ padding: "12px", textAlign: "right", fontWeight: 700, color: "#333", fontSize: 14 }}>₹{Math.round(totals.total || 0).toLocaleString("en-IN")}</td>
               </tr>
               {advance && advance.amount > 0 && (
                 <>
                   <tr>
-                    <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                    <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600, color: "#8FD6A8" }}>ADVANCE PAID</td>
-                    <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600, color: "#8FD6A8" }}>-{advance.amount.toLocaleString("en-IN")}</td>
+                    <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#28a745" }}>Advance Paid:</td>
+                    <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#28a745" }}>-₹{advance.amount.toLocaleString("en-IN")}</td>
                   </tr>
                   <tr>
-                    <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                    <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 700, color: DOC.goldLight }}>BALANCE DUE</td>
-                    <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 700, color: DOC.goldLight }}>{advance.balance.toLocaleString("en-IN")}</td>
+                    <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 700, color: "#333" }}>Balance Due:</td>
+                    <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 700, color: "#333" }}>₹{advance.balance.toLocaleString("en-IN")}</td>
                   </tr>
                 </>
               )}
@@ -833,26 +773,21 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
       </div>
 
       {!isLast && (
-        <div style={{ textAlign: "right", fontSize: 11.5, fontStyle: "italic", color: DOC.goldLight, padding: "0 4px 2px" }}>Continued on next page ›</div>
+        <div style={{ textAlign: "right", fontSize: 11, fontStyle: "italic", color: "#999", padding: "10px" }}>Continued on next page ›</div>
       )}
 
       {isLast && (<>
-      {/* Note — stamp logo | notes | sofa picture */}
-      <DocPanel style={{ marginBottom: 12, overflow: "hidden", position: "relative", display: "flex", gap: 12, alignItems: "center", padding: "12px 14px", minHeight: 168 }}>
-        <DocImg src={DOC_IMG.stamp} style={{ width: 96, height: 96, objectFit: "contain", flexShrink: 0, mixBlendMode: "lighten" }} />
-        <div style={{ flex: 1, minWidth: 0, position: "relative", zIndex: 1, paddingRight: 85 }}>
-          <div style={{ fontSize: 13.5, fontWeight: 700, color: DOC.gold, marginBottom: 5, fontFamily: DOC_FONT.display, letterSpacing: 1 }}>{docType} NOTE:</div>
-          <ul style={{ margin: 0, paddingLeft: 16, fontSize: 11.5, lineHeight: 1.65, color: DOC.textDim }}>
-            <li>This {docType.toLowerCase()} is valid for 15 days from the date of issue.</li>
-            <li>Prices are inclusive of loading at godown.</li>
-            <li>Transportation, taxes and installation are extra (if applicable).</li>
-            <li>Advance payment may be required to confirm the order.</li>
-            <li>Subject to availability of stock.</li>
-            <li>Thank you for considering Rockwood Timber and Furnitures.</li>
-          </ul>
-          <div style={{ marginTop: 7 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: DOC.gold, letterSpacing: 1.5, fontFamily: DOC_FONT.display }}>PREPARED BY</div>
-            <div style={{ fontSize: 17, fontWeight: 600, color: "#fff", letterSpacing: 2, fontFamily: DOC_FONT.display }}>ROCKWOOD</div>
+      {/* Terms & Conditions */}
+      <div style={{ padding: "15px 20px", borderTop: "1px solid #ddd", fontSize: 11 }}>
+        <div style={{ fontWeight: "bold", color: "#333", marginBottom: 8 }}>{docType} TERMS & CONDITIONS:</div>
+        <ul style={{ margin: 0, paddingLeft: 18, fontSize: 11, lineHeight: 1.6, color: "#666" }}>
+          <li>This {docType.toLowerCase()} is valid for 15 days from the date of issue.</li>
+          <li>Prices are inclusive of goods and GST as applicable.</li>
+          <li>Transportation and installation are extra if applicable.</li>
+          <li>Advance payment may be required to confirm the order.</li>
+          <li>Subject to availability of stock.</li>
+          <li>All products are genuine and supplied with authenticity certificates.</li>
+        </ul>
             <div style={{ fontSize: 10.5, color: DOC.textDim }}>🗓 {date}</div>
           </div>
         </div>
@@ -864,14 +799,23 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
         QUALITY WOOD &nbsp;•&nbsp; FINE CRAFTSMANSHIP &nbsp;•&nbsp; TIMELESS FURNITURE
       </div>
 
-      {/* Footer badges */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-        {[["tree", "SOLID WOOD", "100% NATURAL"], ["chair", "ELEGANT", "DESIGNS"], ["tool", "EXPERT", "CRAFTSMANSHIP"], ["shieldCheck", "QUALITY", "YOU CAN TRUST"]].map(([ic, l1, l2], i) => (
-          <div key={i} style={{ flex: "1 1 110px", display: "flex", alignItems: "center", gap: 9, borderRight: i < 3 ? `1px solid ${DOC.goldDim}` : "none", paddingRight: 8 }}>
-            <span style={{ width: 34, height: 34, borderRadius: "50%", background: DOC.gold, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Icon name={ic} size={17} color={DOC.bg} /></span>
-            <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: 0.5, color: DOC.goldLight, lineHeight: 1.5, fontFamily: DOC_FONT.serif }}>{l1}<br /><span style={{ fontSize: 9.5, color: DOC.gold }}>{l2}</span></span>
+      {/* Footer - Bank Details & Signature */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, padding: "15px 20px", borderTop: "1px solid #ddd" }}>
+        <div style={{ fontSize: 11 }}>
+          <div style={{ fontWeight: "bold", color: "#333", marginBottom: 8 }}>BANK DETAILS:</div>
+          <div style={{ color: "#666", lineHeight: 1.6, fontSize: 10 }}>
+            <div><strong>Account Name:</strong> PosPerfume Retail Pvt Ltd</div>
+            <div><strong>Account No:</strong> 1234567890</div>
+            <div><strong>IFSC Code:</strong> SBIN0001234</div>
+            <div><strong>Branch:</strong> Kochi Main Branch</div>
           </div>
-        ))}
+        </div>
+        <div style={{ textAlign: "right", fontSize: 11 }}>
+          <div style={{ marginTop: 30, borderTop: "1px solid #333", paddingTop: 20 }}>
+            <div style={{ color: "#666", fontSize: 10 }}>Authorized Signature</div>
+          </div>
+          <div style={{ marginTop: 5, color: "#666", fontSize: 10 }}>PosPerfume Management</div>
+        </div>
       </div>
       </>)}
       </div>
