@@ -788,15 +788,6 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
           <li>Subject to availability of stock.</li>
           <li>All products are genuine and supplied with authenticity certificates.</li>
         </ul>
-            <div style={{ fontSize: 10.5, color: DOC.textDim }}>🗓 {date}</div>
-          </div>
-        </div>
-        <DocImg src={DOC_IMG.sofa} style={{ position: "absolute", right: 0, bottom: 0, width: 240, mixBlendMode: "lighten", WebkitMaskImage: "linear-gradient(105deg, transparent 3%, #000 32%)", maskImage: "linear-gradient(105deg, transparent 3%, #000 32%)" }} />
-      </DocPanel>
-
-      {/* Ribbon */}
-      <div style={{ textAlign: "center", fontSize: 13, fontWeight: 700, letterSpacing: 2, color: DOC.goldLight, border: `1px solid ${DOC.goldDim}`, borderRadius: 8, padding: "8px 10px", marginBottom: 12, fontFamily: DOC_FONT.serif }}>
-        QUALITY WOOD &nbsp;•&nbsp; FINE CRAFTSMANSHIP &nbsp;•&nbsp; TIMELESS FURNITURE
       </div>
 
       {/* Footer - Bank Details & Signature */}
