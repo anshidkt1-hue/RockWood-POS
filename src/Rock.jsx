@@ -810,6 +810,7 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
       </div>
       </>)}
       </div>
+      </div>
         );
       })}
     </div>
