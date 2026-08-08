@@ -5,7 +5,9 @@
       "Bash(mv RockWood/* . && rmdir RockWood && ls -la)",
       "Bash(npm install *)",
       "Bash(git add *)",
-      "Bash(git commit -m 'Create PosPerfume: Perfume shop POS system by adapting RockWood *)"
+      "Bash(git commit -m 'Create PosPerfume: Perfume shop POS system by adapting RockWood *)",
+      "Bash(git push *)",
+      "Bash(git commit *)"
     ]
   }
 }
