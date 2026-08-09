@@ -11,7 +11,8 @@
       "Bash(git commit -m 'Simplify invoice and quotation design - use clean, professional template *)",
       "Bash(pkill -f \"vite\\\\|npm\")",
       "Bash(npm run *)",
-      "Bash(git commit -m 'Add thermal receipt format for POS transactions - compact invoice for thermal printer *)"
+      "Bash(git commit -m 'Add thermal receipt format for POS transactions - compact invoice for thermal printer *)",
+      "Bash(git commit -m 'Fix thermal receipt modal - correct date format and simplify print function *)"
     ]
   }
 }

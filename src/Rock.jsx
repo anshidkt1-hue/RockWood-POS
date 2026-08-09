@@ -1364,13 +1364,22 @@ function Transactions({ transactions, setTransactions, settings }) {
 
       {viewTxn && (() => {
         const products = viewTxn.products || [];
-        const subtotal = products.reduce((s, p) => s + p.qty * p.price, 0);
+        const subtotal = products.reduce((s, p) => s + (p.qty || 1) * p.price, 0);
         const diff = viewTxn.total - subtotal;
         const discount = diff < 0 ? -diff : 0;
         const tax = diff > 0 ? diff : 0;
-        const displayDate = new Date(viewTxn.date).toLocaleDateString("en-GB", { day: "2-digit", month: "3-digit", year: "numeric" });
+        const displayDate = typeof viewTxn.date === 'string' ? viewTxn.date.split(',')[0] : new Date(viewTxn.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+        const printThermalReceipt = () => {
+          const el = document.querySelector(".thermal-receipt");
+          if (el) {
+            const w = window.open("", "_blank", "width=400,height=600");
+            w.document.write("<html><head><title>Receipt</title><style>body{font-family:monospace;margin:0;padding:10px;font-size:11px;}</style></head><body>" + el.innerHTML + "</body></html>");
+            w.document.close();
+            setTimeout(() => w.print(), 250);
+          }
+        };
         return (
-          <Modal title="" onClose={() => setViewTxn(null)} width={400}>
+          <Modal title="Transaction Receipt" onClose={() => setViewTxn(null)} width={400}>
             <div style={{ background: "#f5f5f5", padding: 20, borderRadius: 4, marginBottom: 15 }}>
               <ThermalReceipt
                 invoiceNo={viewTxn.invoiceNo || viewTxn.id}
@@ -1385,7 +1394,7 @@ function Transactions({ transactions, setTransactions, settings }) {
             </div>
             <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 12, borderTop: "1px solid #ddd" }}>
               <span style={S.badge(statusBg(viewTxn.status), statusColor(viewTxn.status))}>{viewTxn.status}</span>
-              <button style={S.btn} onClick={() => { const el = document.querySelector(".thermal-receipt"); if (el) { const w = window.open("", "_blank", "width=400,height=600"); w.document.write("<html><head><title>Receipt</title><style>body{font-family:monospace;margin:0;padding:10px;}</style></head><body>" + el.innerHTML + "</body></html>"); w.document.close(); w.print(); } }}><Icon name="print" size={15} /> Print Receipt</button>
+              <button style={S.btn} onClick={printThermalReceipt}><Icon name="print" size={15} /> Print Receipt</button>
             </div>
           </Modal>
         );
