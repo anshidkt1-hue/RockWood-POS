@@ -526,6 +526,76 @@ const FormMessage = ({ msg }) => msg ? (
   }}>{msg.type === "error" ? "⚠ " : "✓ "}{msg.text}</div>
 ) : null;
 
+// --- THERMAL RECEIPT (Compact POS Receipt) ------------------------------------
+
+const ThermalReceipt = ({ invoiceNo, date, customer, items, subtotal, discount, tax, total, gstNo }) => {
+  return (
+    <div className="thermal-receipt" style={{ fontFamily: "monospace", fontSize: 11, lineHeight: 1.4, maxWidth: "320px", margin: "0 auto", padding: "10px", background: "#fff", color: "#000" }}>
+      {/* Header */}
+      <div style={{ textAlign: "center", marginBottom: 10, borderBottom: "1px dashed #000", paddingBottom: 8 }}>
+        <div style={{ fontSize: 13, fontWeight: "bold", marginBottom: 2 }}>POSPERFUME</div>
+        <div style={{ fontSize: 9 }}>Premium Fragrance Retail</div>
+        <div style={{ fontSize: 9 }}>Kochi, Kerala - 682014</div>
+        <div style={{ fontSize: 9 }}>Ph: 9876543210</div>
+      </div>
+
+      {/* Invoice Details */}
+      <div style={{ marginBottom: 8, fontSize: 10 }}>
+        <div>Invoice No: <strong>{invoiceNo}</strong></div>
+        <div>Date: {date}</div>
+        <div>Customer: {customer}</div>
+      </div>
+
+      {/* Items Table */}
+      <div style={{ marginBottom: 8, borderTop: "1px dashed #000", borderBottom: "1px dashed #000", paddingTop: 5, paddingBottom: 5 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 60px", gap: 5, fontSize: 9, fontWeight: "bold", marginBottom: 5 }}>
+          <div>Item</div>
+          <div style={{ textAlign: "center" }}>Qty</div>
+          <div style={{ textAlign: "right" }}>Amount</div>
+        </div>
+        {items.map((item, i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 40px 60px", gap: 5, fontSize: 9, marginBottom: 3 }}>
+            <div style={{ wordBreak: "break-word" }}>{item.name}</div>
+            <div style={{ textAlign: "center" }}>{item.qty || 1}</div>
+            <div style={{ textAlign: "right" }}>₹{(item.qty || 1) * item.price}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Totals */}
+      <div style={{ marginBottom: 8, fontSize: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, marginBottom: 3 }}>
+          <div>Subtotal:</div>
+          <div style={{ textAlign: "right" }}>₹{subtotal}</div>
+        </div>
+        {discount > 0 && (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, marginBottom: 3 }}>
+            <div>Discount:</div>
+            <div style={{ textAlign: "right" }}>-₹{discount}</div>
+          </div>
+        )}
+        {tax > 0 && (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, marginBottom: 3 }}>
+            <div>GST (18%):</div>
+            <div style={{ textAlign: "right" }}>₹{tax}</div>
+          </div>
+        )}
+        <div style={{ borderTop: "1px dashed #000", paddingTop: 3, display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, fontWeight: "bold", fontSize: 11 }}>
+          <div>Total:</div>
+          <div style={{ textAlign: "right" }}>₹{total}</div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div style={{ textAlign: "center", fontSize: 9, borderTop: "1px dashed #000", paddingTop: 5, marginTop: 8 }}>
+        <div>Thank you for your purchase!</div>
+        <div>No Refund, Exchange within 7 days</div>
+        <div>Visit Again!</div>
+      </div>
+    </div>
+  );
+};
+
 // --- BRANDED DOCUMENT (Quotation / Invoice) ------------------------------------
 
 const DOC = {
@@ -1296,23 +1366,26 @@ function Transactions({ transactions, setTransactions, settings }) {
         const products = viewTxn.products || [];
         const subtotal = products.reduce((s, p) => s + p.qty * p.price, 0);
         const diff = viewTxn.total - subtotal;
-        const totals = { subtotal, discount: diff < 0 ? -diff : 0, tax: diff > 0 ? diff : 0, total: viewTxn.total };
-        const displayDate = new Date(viewTxn.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+        const discount = diff < 0 ? -diff : 0;
+        const tax = diff > 0 ? diff : 0;
+        const displayDate = new Date(viewTxn.date).toLocaleDateString("en-GB", { day: "2-digit", month: "3-digit", year: "numeric" });
         return (
-          <Modal title="" onClose={() => setViewTxn(null)} width={800}>
-            <A4DocWrap>
-              <BrandedDoc
-                docType="INVOICE"
-                docNo={viewTxn.invoiceNo || viewTxn.id}
+          <Modal title="" onClose={() => setViewTxn(null)} width={400}>
+            <div style={{ background: "#f5f5f5", padding: 20, borderRadius: 4, marginBottom: 15 }}>
+              <ThermalReceipt
+                invoiceNo={viewTxn.invoiceNo || viewTxn.id}
                 date={displayDate}
-                customerName={viewTxn.customer}
+                customer={viewTxn.customer}
                 items={products}
-                totals={totals}
+                subtotal={Math.round(subtotal)}
+                discount={Math.round(discount)}
+                tax={Math.round(tax)}
+                total={Math.round(viewTxn.total)}
               />
-            </A4DocWrap>
-            <div style={{ marginTop: 12, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 12, borderTop: "1px solid #ddd" }}>
               <span style={S.badge(statusBg(viewTxn.status), statusColor(viewTxn.status))}>{viewTxn.status}</span>
-              <button style={S.btn} onClick={printBrandedDoc}><Icon name="print" size={15} /> Print</button>
+              <button style={S.btn} onClick={() => { const el = document.querySelector(".thermal-receipt"); if (el) { const w = window.open("", "_blank", "width=400,height=600"); w.document.write("<html><head><title>Receipt</title><style>body{font-family:monospace;margin:0;padding:10px;}</style></head><body>" + el.innerHTML + "</body></html>"); w.document.close(); w.print(); } }}><Icon name="print" size={15} /> Print Receipt</button>
             </div>
           </Modal>
         );
