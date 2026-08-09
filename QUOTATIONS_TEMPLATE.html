@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PosPerfume - Quotation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        .quotation-container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 40px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            border-bottom: 2px solid #333;
+            padding-bottom: 20px;
+        }
+
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .company-details {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .quotation-title {
+            font-size: 20px;
+            font-weight: bold;
+            color: #333;
+            margin-top: 20px;
+        }
+
+        .quotation-meta {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin: 20px 0;
+            font-size: 13px;
+        }
+
+        .meta-item {
+            line-height: 1.8;
+        }
+
+        .meta-label {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .meta-value {
+            color: #666;
+        }
+
+        .customer-section {
+            margin: 30px 0;
+            font-size: 13px;
+            line-height: 1.8;
+        }
+
+        .customer-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .customer-info {
+            color: #666;
+        }
+
+        .quotation-note {
+            background-color: #f9f9f9;
+            border-left: 4px solid #333;
+            padding: 15px;
+            margin: 20px 0;
+            font-size: 13px;
+            color: #666;
+        }
+
+        .quotation-note-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .table-section {
+            margin: 30px 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+            color: #333;
+        }
+
+        td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            color: #666;
+        }
+
+        tr:nth-child(even) {
+            background-color: #fafafa;
+        }
+
+        .text-right {
+            text-align: right;
+        }
+
+        .summary-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .validity-section {
+            font-size: 12px;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .validity-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .totals {
+            text-align: right;
+        }
+
+        .total-row {
+            display: grid;
+            grid-template-columns: 1fr 150px;
+            gap: 20px;
+            padding: 8px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .total-row.final {
+            font-weight: bold;
+            font-size: 15px;
+            border-top: 2px solid #333;
+            border-bottom: 2px solid #333;
+            padding: 12px 0;
+            background-color: #f9f9f9;
+        }
+
+        .amount-in-words {
+            margin-top: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .amount-in-words-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .terms-section {
+            margin-top: 30px;
+            font-size: 12px;
+            line-height: 1.8;
+            color: #666;
+        }
+
+        .terms-label {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .terms-section ul {
+            margin-left: 20px;
+        }
+
+        .terms-section li {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .signature-section {
+            text-align: right;
+            border-top: 1px solid #ddd;
+            padding-top: 30px;
+        }
+
+        .signature-line {
+            margin-top: 50px;
+            border-top: 1px solid #333;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .certified-text {
+            font-size: 11px;
+            color: #666;
+            margin-top: 20px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .print-button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .print-button:hover {
+            background-color: #555;
+        }
+
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .action-buttons button {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .action-buttons button:hover {
+            background-color: #555;
+        }
+
+        .action-buttons button.secondary {
+            background-color: #666;
+        }
+
+        .action-buttons button.secondary:hover {
+            background-color: #888;
+        }
+
+        .action-buttons button.success {
+            background-color: #28a745;
+        }
+
+        .action-buttons button.success:hover {
+            background-color: #218838;
+        }
+
+        @media print {
+            body {
+                background-color: white;
+                padding: 0;
+            }
+
+            .action-buttons,
+            .print-button {
+                display: none;
+            }
+
+            .quotation-container {
+                box-shadow: none;
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="action-buttons">
+        <button class="print-button" onclick="window.print()">🖨️ Print Quotation</button>
+        <button class="secondary" onclick="sendEmail()">📧 Send via Email</button>
+        <button class="success" onclick="convertToInvoice()">✓ Convert to Invoice</button>
+    </div>
+
+    <div class="quotation-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="company-name">POSPERFUME</div>
+            <div class="company-details">
+                Premium Fragrance Retail<br>
+                123 Fragrance Lane, Mall Road, Kochi, Kerala - 682014<br>
+                Phone: 9876543210 | Email: sales@posperfume.com
+            </div>
+            <div class="quotation-title">QUOTATION / ESTIMATE</div>
+        </div>
+
+        <!-- Quotation Meta Information -->
+        <div class="quotation-meta">
+            <div class="meta-item">
+                <div class="meta-label">QUOTATION NO:</div>
+                <div class="meta-value">QUOT-2026-0042</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">DATE:</div>
+                <div class="meta-value">August 8, 2026</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">VALID UNTIL:</div>
+                <div class="meta-value">August 22, 2026</div>
+            </div>
+            <div class="meta-item">
+                <div class="meta-label">QUOTATION STATUS:</div>
+                <div class="meta-value" style="color: #28a745; font-weight: bold;">ACTIVE</div>
+            </div>
+        </div>
+
+        <hr style="border: none; border-top: 1px solid #ddd; margin: 20px 0;">
+
+        <!-- Customer Information -->
+        <div class="customer-section">
+            <div class="customer-label">CUSTOMER:</div>
+            <div class="customer-info">
+                <strong>Ms. Priya Sharma</strong><br>
+                Email: priya.sharma@email.com<br>
+                Phone: +91 9876543210<br>
+                Location: Kochi, Kerala
+            </div>
+        </div>
+
+        <!-- Quotation Note -->
+        <div class="quotation-note">
+            <div class="quotation-note-label">📌 QUOTATION DETAILS:</div>
+            This is a formal quotation for the supply of premium fragrances. Please review the details and pricing below. Kindly confirm your order to proceed with billing.
+        </div>
+
+        <!-- Items Table -->
+        <div class="table-section">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 5%;">S. NO</th>
+                        <th style="width: 35%;">ITEM NAME</th>
+                        <th style="width: 10%;">CATEGORY</th>
+                        <th style="width: 10%;">QTY</th>
+                        <th style="width: 15%;">UNIT PRICE</th>
+                        <th class="text-right" style="width: 15%;">AMOUNT</th>
+                        <th class="text-right" style="width: 10%;">TOTAL</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Creed Aventus</td>
+                        <td>Luxury</td>
+                        <td class="text-right">2</td>
+                        <td class="text-right">₹15,000</td>
+                        <td class="text-right">₹30,000</td>
+                        <td class="text-right">₹30,000</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Dior Sauvage</td>
+                        <td>Designer</td>
+                        <td class="text-right">3</td>
+                        <td class="text-right">₹8,500</td>
+                        <td class="text-right">₹25,500</td>
+                        <td class="text-right">₹25,500</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Tom Ford Oud Wood</td>
+                        <td>Woody</td>
+                        <td class="text-right">1</td>
+                        <td class="text-right">₹12,000</td>
+                        <td class="text-right">₹12,000</td>
+                        <td class="text-right">₹12,000</td>
+                    </tr>
+                    <tr>
+                        <td colspan="6" style="text-align: right; font-weight: bold;">SUBTOTAL:</td>
+                        <td class="text-right" style="font-weight: bold;">₹67,500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Summary Section -->
+        <div class="summary-section">
+            <!-- Validity Section -->
+            <div class="validity-section">
+                <div class="validity-label">📋 TERMS & VALIDITY:</div>
+                <div>
+                    <strong>Quotation Validity:</strong> 14 Days<br>
+                    <strong>Valid Until:</strong> August 22, 2026<br>
+                    <strong>Delivery Time:</strong> 2-3 Business Days<br>
+                    <strong>Payment Terms:</strong> 50% Advance<br>
+                    <strong>Discount Available:</strong> 10% on bulk orders
+                </div>
+            </div>
+
+            <!-- Totals -->
+            <div class="totals">
+                <div class="total-row">
+                    <div>Subtotal:</div>
+                    <div>₹67,500</div>
+                </div>
+                <div class="total-row">
+                    <div>Discount (if any):</div>
+                    <div>-₹0</div>
+                </div>
+                <div class="total-row">
+                    <div>GST (18%):</div>
+                    <div>₹12,150</div>
+                </div>
+                <div class="total-row final">
+                    <div>TOTAL QUOTATION:</div>
+                    <div>₹79,650</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Amount in Words -->
+        <div class="amount-in-words">
+            <div class="amount-in-words-label">AMOUNT IN WORDS:</div>
+            Seventy Nine Thousand Six Hundred and Fifty Rupees Only
+        </div>
+
+        <!-- Terms & Conditions -->
+        <div class="terms-section">
+            <div class="terms-label">📄 TERMS & CONDITIONS:</div>
+            <ul>
+                <li>This quotation is valid for 14 days from the date mentioned above.</li>
+                <li>50% advance payment required to proceed with order processing.</li>
+                <li>Delivery will be arranged within 2-3 business days after payment confirmation.</li>
+                <li>All products are genuine and supplied with authenticity certificates.</li>
+                <li>Free replacement for damaged items within 7 days of delivery.</li>
+                <li>Customization available for bulk orders (minimum 10 units).</li>
+                <li>GST @ 18% is applicable on all items as per GST regulations.</li>
+                <li>Payment methods: Cash, UPI, Bank Transfer, Card.</li>
+            </ul>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <div>
+                <div style="font-weight: bold; margin-bottom: 10px;">CONTACT US:</div>
+                <div style="font-size: 12px; color: #666; line-height: 1.8;">
+                    <strong>Phone:</strong> 9876543210<br>
+                    <strong>Email:</strong> sales@posperfume.com<br>
+                    <strong>WhatsApp:</strong> 9876543210<br>
+                    <strong>Website:</strong> www.posperfume.com
+                </div>
+            </div>
+        </div>
+
+        <!-- Signature Section -->
+        <div class="signature-section">
+            <div class="signature-line">Authorized Signature</div>
+            <div style="margin-top: 10px; font-size: 12px; color: #666;">
+                PosPerfume Management
+            </div>
+        </div>
+
+        <!-- Certified Text -->
+        <div class="certified-text">
+            This is a formal quotation subject to terms and conditions mentioned above.
+            <br>Prices are subject to change based on market conditions and product availability.
+        </div>
+    </div>
+
+    <script>
+        function sendEmail() {
+            alert('Email functionality would open email client with quotation details');
+        }
+
+        function convertToInvoice() {
+            alert('This quotation will be converted to an invoice after customer acceptance');
+        }
+    </script>
+</body>
+</html>

@@ -3,34 +3,34 @@ import { AreaChart, Area, BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContai
 
 // --- DATA --------------------------------------------------------------------
 
-const CATEGORIES = ["All", "Living Room", "Dining Room", "Office", "Lighting", "Decor"];
+const CATEGORIES = ["All", "Luxury", "Niche", "Designer", "Casual", "Floral", "Woody"];
 
 const PRODUCTS = [
-  { id: 1, sku: "SOFA-GRY-01", name: "Minimalist Grey Sofa", category: "Living Room", price: 385000, wholesalePrice: 320000, stock: 2, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" },
-  { id: 2, sku: "OTT-LTH-10", name: "Leather Ottoman", category: "Living Room", price: 74000, wholesalePrice: 62000, stock: 7, image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&q=80" },
-  { id: 3, sku: "LMP-BRS-04", name: "Modern Brass Lamp", category: "Lighting", price: 38500, wholesalePrice: 32000, stock: 8, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" },
-  { id: 4, sku: "RUG-GEO-06", name: "Geometric Rug", category: "Decor", price: 58000, wholesalePrice: 48000, stock: 21, image: "https://images.unsplash.com/photo-1506439773649-6e0eb8cfb237?w=300&q=80" },
-  { id: 5, sku: "CHR-OFF-03", name: "Ergo Office Chair", category: "Office", price: 105000, wholesalePrice: 88000, stock: 15, image: "https://images.unsplash.com/photo-1541558869434-2840d308329a?w=300&q=80" },
-  { id: 6, sku: "SHLF-BK-08", name: "Bookshelf", category: "Office", price: 135000, wholesalePrice: 112000, stock: 2, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" },
-  { id: 7, sku: "TBL-OAK-02", name: "Oak Dining Table", category: "Dining Room", price: 265000, wholesalePrice: 220000, stock: 1, image: "https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?w=300&q=80" },
-  { id: 8, sku: "MRR-FLR-09", name: "Floor Mirror", category: "Decor", price: 89000, wholesalePrice: 74000, stock: 7, image: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=300&q=80" },
-  { id: 9, sku: "SOFA12", name: "Sofa12", category: "Office", price: 30000, wholesalePrice: 25000, stock: 3, image: "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" },
-  { id: 10, sku: "TBL-CNT-05", name: "Marble Coffee Table", category: "Living Room", price: 195000, wholesalePrice: 162000, stock: 4, image: "https://images.unsplash.com/photo-1549187774-b4e9b0445b41?w=300&q=80" },
-  { id: 11, sku: "LMP-FLR-11", name: "Arc Floor Lamp", category: "Lighting", price: 52000, wholesalePrice: 43000, stock: 6, image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=300&q=80" },
-  { id: 12, sku: "CHR-ACC-07", name: "Accent Armchair", category: "Living Room", price: 88000, wholesalePrice: 73000, stock: 9, image: "https://images.unsplash.com/photo-1586023492125-27b2c045efd7?w=300&q=80" },
+  { id: 1, sku: "PERF-LUX-001", name: "Creed Aventus", category: "Luxury", price: 15000, wholesalePrice: 12500, stock: 5, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 2, sku: "PERF-DES-002", name: "Dior Sauvage", category: "Designer", price: 8500, wholesalePrice: 7000, stock: 12, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 3, sku: "PERF-NIC-003", name: "Heeley Sel Marin", category: "Niche", price: 9000, wholesalePrice: 7500, stock: 8, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 4, sku: "PERF-FLO-004", name: "Marc Jacobs Daisy", category: "Floral", price: 5500, wholesalePrice: 4500, stock: 18, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 5, sku: "PERF-WOO-005", name: "Tom Ford Oud Wood", category: "Woody", price: 12000, wholesalePrice: 10000, stock: 6, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 6, sku: "PERF-CAS-006", name: "Calvin Klein One", category: "Casual", price: 3500, wholesalePrice: 2800, stock: 25, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 7, sku: "PERF-LUX-007", name: "Acqua di Parma", category: "Luxury", price: 11000, wholesalePrice: 9000, stock: 7, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 8, sku: "PERF-NIC-008", name: "Orto Parisi Megamare", category: "Niche", price: 10500, wholesalePrice: 8500, stock: 4, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 9, sku: "PERF-DES-009", name: "Guerlain La Petite Robe Noire", category: "Designer", price: 7500, wholesalePrice: 6000, stock: 10, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 10, sku: "PERF-FLO-010", name: "Lancôme La Vie Est Belle", category: "Floral", price: 6500, wholesalePrice: 5200, stock: 14, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 11, sku: "PERF-WOO-011", name: "Givenchy Gentleman Reserve Privée", category: "Woody", price: 9500, wholesalePrice: 7800, stock: 8, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
+  { id: 12, sku: "PERF-CAS-012", name: "Ariana Grande Thank U Next", category: "Casual", price: 4500, wholesalePrice: 3600, stock: 20, image: "https://images.unsplash.com/photo-1595522775076-a72e1e1ca97f?w=300&q=80" },
 ];
 
 const SALE_TYPES = ["Retail", "Wholesale"];
 
 const INITIAL_TRANSACTIONS = [
-  { id: "TRX-1029", date: "Jun 4, 05:42 AM", customer: "Walk-in Customer", payment: "Card", saleType: "Retail", items: 1, total: 415384, status: "CANCELLED", products: [{ name: "Minimalist Grey Sofa", qty: 1, price: 385000 }] },
-  { id: "TRX-1028", date: "Jun 4, 05:37 AM", customer: "Walk-in Customer", payment: "Online", saleType: "Retail", items: 1, total: 71928, status: "COMPLETED", products: [{ name: "Leather Ottoman", qty: 1, price: 74000 }] },
-  { id: "TRX-1027", date: "Jun 4, 05:36 AM", customer: "Walk-in Customer", payment: "Cash", saleType: "Retail", items: 1, total: 79920, status: "COMPLETED", products: [{ name: "Geometric Rug", qty: 1, price: 58000 }] },
-  { id: "TRX-1026", date: "Jun 4, 05:34 AM", customer: "Walk-in Customer", payment: "Cash", saleType: "Retail", items: 1, total: 415800, status: "COMPLETED", products: [{ name: "Minimalist Grey Sofa", qty: 1, price: 385000 }] },
-  { id: "TRX-1025", date: "Jun 4, 04:39 AM", customer: "Anshid K T", payment: "Cash", saleType: "Wholesale", items: 1, total: 237600, status: "COMPLETED", products: [{ name: "Oak Dining Table", qty: 1, price: 220000 }] },
-  { id: "TRX-1024", date: "Jun 4, 04:27 AM", customer: "Nimali Silva", payment: "Cash", saleType: "Wholesale", items: 2, total: 190080, status: "COMPLETED", products: [{ name: "Ergo Office Chair", qty: 2, price: 88000 }] },
-  { id: "TRX-1023", date: "Jun 4, 04:25 AM", customer: "Kamal Gunaratne", payment: "Cash", saleType: "Retail", items: 1, total: 62014, status: "COMPLETED", products: [{ name: "Modern Brass Lamp", qty: 1, price: 38500 }] },
-  { id: "TRX-1022", date: "Jun 3, 06:10 PM", customer: "Saman Perera", payment: "Card", saleType: "Retail", items: 1, total: 150000, status: "REFUNDED", products: [{ name: "Marble Coffee Table", qty: 1, price: 195000 }] },
+  { id: "TRX-1029", date: "Jun 4, 05:42 AM", customer: "Walk-in Customer", payment: "Card", saleType: "Retail", items: 1, total: 15500, status: "CANCELLED", products: [{ name: "Creed Aventus", qty: 1, price: 15000 }] },
+  { id: "TRX-1028", date: "Jun 4, 05:37 AM", customer: "Walk-in Customer", payment: "Online", saleType: "Retail", items: 2, total: 14850, status: "COMPLETED", products: [{ name: "Dior Sauvage", qty: 1, price: 8500 }, { name: "Calvin Klein One", qty: 1, price: 3500 }] },
+  { id: "TRX-1027", date: "Jun 4, 05:36 AM", customer: "Walk-in Customer", payment: "Cash", saleType: "Retail", items: 1, total: 5720, status: "COMPLETED", products: [{ name: "Marc Jacobs Daisy", qty: 1, price: 5500 }] },
+  { id: "TRX-1026", date: "Jun 4, 05:34 AM", customer: "Walk-in Customer", payment: "Cash", saleType: "Retail", items: 2, total: 21000, status: "COMPLETED", products: [{ name: "Tom Ford Oud Wood", qty: 2, price: 12000 }] },
+  { id: "TRX-1025", date: "Jun 4, 04:39 AM", customer: "Anshid K T", payment: "Cash", saleType: "Wholesale", items: 3, total: 25000, status: "COMPLETED", products: [{ name: "Dior Sauvage", qty: 3, price: 7000 }] },
+  { id: "TRX-1024", date: "Jun 4, 04:27 AM", customer: "Nimali Silva", payment: "Cash", saleType: "Wholesale", items: 4, total: 32000, status: "COMPLETED", products: [{ name: "Calvin Klein One", qty: 4, price: 2800 }] },
+  { id: "TRX-1023", date: "Jun 4, 04:25 AM", customer: "Kamal Gunaratne", payment: "Cash", saleType: "Retail", items: 1, total: 9350, status: "COMPLETED", products: [{ name: "Heeley Sel Marin", qty: 1, price: 9000 }] },
+  { id: "TRX-1022", date: "Jun 3, 06:10 PM", customer: "Saman Perera", payment: "Card", saleType: "Retail", items: 1, total: 11550, status: "REFUNDED", products: [{ name: "Acqua di Parma", qty: 1, price: 11000 }] },
 ];
 
 const INITIAL_CUSTOMERS = [
@@ -43,61 +43,59 @@ const INITIAL_CUSTOMERS = [
   { id: 7, name: "Nimali Silva", initials: "NS", email: "nimali.s@example.com", phone: "+94 71 987 6543", location: "Kandy", spent: 550440, status: "Regular", lastVisit: "about 15 hours ago" },
 ];
 
-const ROLES = ["Carpenter", "Polisher", "Upholsterer", "Painter", "Helper", "Driver", "Showroom Staff", "Accountant", "Manager", "Supervisor", "Other"];
-const DEPARTMENTS = ["Factory", "Showroom", "Office", "Delivery"];
+const ROLES = ["Fragrance Consultant", "Sales Associate", "Store Manager", "Inventory Manager", "Delivery Staff", "Showroom Staff", "Accountant", "Manager", "Supervisor", "Other"];
+const DEPARTMENTS = ["Retail", "Warehouse", "Office", "Delivery"];
 
 const INITIAL_EMPLOYEES = [
   { id: 1, employeeId: "EMP-001", name: "Anita Sharma", phone: "9875678901", email: "", role: "Accountant", department: "Office", joiningDate: "2021-11-01", salary: 25000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: true, esiApplicable: false, password: "password123" },
-  { id: 2, employeeId: "EMP-002", name: "Ramesh Kumar", phone: "9871234567", email: "", role: "Carpenter", department: "Factory", joiningDate: "2022-03-15", salary: 18000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: true, esiApplicable: true, password: "password123" },
-  { id: 3, employeeId: "EMP-003", name: "Vikash Singh", phone: "9874567890", email: "", role: "Driver", department: "Delivery", joiningDate: "2023-08-05", salary: 24000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: false, esiApplicable: true, password: "password123" },
-  { id: 4, employeeId: "EMP-004", name: "Sunil Yadav", phone: "9872345678", email: "", role: "Polisher", department: "Factory", joiningDate: "2023-01-10", salary: 15000, pan: "", bankAccount: "", ifsc: "", status: "Inactive", pfApplicable: true, esiApplicable: true, password: "password123" },
-  { id: 5, employeeId: "EMP-005", name: "Meena Devi", phone: "9873456789", email: "", role: "Showroom Staff", department: "Showroom", joiningDate: "2022-06-20", salary: 12000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: false, esiApplicable: false, password: "password123" },
+  { id: 2, employeeId: "EMP-002", name: "Priya Patel", phone: "9871234567", email: "", role: "Fragrance Consultant", department: "Retail", joiningDate: "2022-03-15", salary: 18000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: true, esiApplicable: true, password: "password123" },
+  { id: 3, employeeId: "EMP-003", name: "Vikash Singh", phone: "9874567890", email: "", role: "Delivery Staff", department: "Delivery", joiningDate: "2023-08-05", salary: 24000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: false, esiApplicable: true, password: "password123" },
+  { id: 4, employeeId: "EMP-004", name: "Rahul Verma", phone: "9872345678", email: "", role: "Inventory Manager", department: "Warehouse", joiningDate: "2023-01-10", salary: 22000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: true, esiApplicable: true, password: "password123" },
+  { id: 5, employeeId: "EMP-005", name: "Meena Devi", phone: "9873456789", email: "", role: "Sales Associate", department: "Retail", joiningDate: "2022-06-20", salary: 15000, pan: "", bankAccount: "", ifsc: "", status: "Active", pfApplicable: false, esiApplicable: false, password: "password123" },
 ];
 
 const ADMIN_USER = { username: "admin", password: "admin123", name: "Anshid K T", role: "Admin" };
 
 const PERMISSIONS = {
-  Admin: ["dashboard", "pos", "transactions", "inventory", "purchases", "production", "employees", "customers", "expenses", "reports", "compliance", "quotations", "settings"],
-  Manager: ["dashboard", "pos", "transactions", "inventory", "purchases", "production", "employees", "customers", "expenses", "reports", "compliance", "quotations"],
-  Supervisor: ["dashboard", "pos", "transactions", "inventory", "purchases", "production", "customers", "reports", "quotations"],
+  Admin: ["dashboard", "pos", "transactions", "inventory", "purchases", "employees", "customers", "expenses", "reports", "compliance", "quotations", "settings"],
+  Manager: ["dashboard", "pos", "transactions", "inventory", "purchases", "employees", "customers", "expenses", "reports", "compliance", "quotations"],
+  Supervisor: ["dashboard", "pos", "transactions", "inventory", "purchases", "customers", "reports", "quotations"],
   Accountant: ["dashboard", "transactions", "expenses", "purchases", "reports", "customers", "compliance", "quotations"],
-  "Showroom Staff": ["dashboard", "pos", "inventory", "customers", "transactions", "quotations"],
-  Carpenter: ["dashboard", "inventory", "production"],
-  Polisher: ["dashboard", "inventory", "production"],
-  Upholsterer: ["dashboard", "inventory", "production"],
-  Painter: ["dashboard", "inventory", "production"],
-  Helper: ["dashboard", "inventory", "production"],
-  Driver: ["dashboard", "inventory"],
+  "Sales Associate": ["dashboard", "pos", "inventory", "customers", "transactions", "quotations"],
+  "Fragrance Consultant": ["dashboard", "pos", "inventory", "customers", "transactions", "quotations"],
+  "Store Manager": ["dashboard", "pos", "transactions", "inventory", "customers", "reports"],
+  "Inventory Manager": ["dashboard", "inventory", "purchases", "reports"],
+  "Delivery Staff": ["dashboard", "inventory", "transactions"],
   Other: ["dashboard"],
 };
 
-const EXPENSE_CATEGORIES = ["Electricity", "Rent", "Maintenance", "Transport", "Salary", "Raw Material", "Machinery", "Insurance", "Tax", "Miscellaneous"];
+const EXPENSE_CATEGORIES = ["Electricity", "Rent", "Maintenance", "Transport", "Salary", "Inventory", "Marketing", "Insurance", "Tax", "Miscellaneous"];
 const PAYMENT_METHODS = ["Cash", "UPI", "Bank Transfer", "Cheque"];
 
 const INITIAL_EXPENSES = [
-  { id: 1, category: "Maintenance", description: "CNC machine servicing", vendor: "TechServ Solutions", date: "2025-01-20", amount: 12000, paymentMethod: "Bank Transfer", reference: "", notes: "" },
-  { id: 2, category: "Miscellaneous", description: "Office stationery & supplies", vendor: "Local Stationery", date: "2025-01-18", amount: 2500, paymentMethod: "Cash", reference: "", notes: "" },
-  { id: 3, category: "Transport", description: "Delivery truck diesel", vendor: "Petrol Pump", date: "2025-01-15", amount: 8500, paymentMethod: "Cash", reference: "", notes: "" },
-  { id: 4, category: "Electricity", description: "Factory electricity bill - January", vendor: "JVVNL", date: "2025-01-10", amount: 18500, paymentMethod: "UPI", reference: "", notes: "" },
-  { id: 5, category: "Rent", description: "Showroom rent - January", vendor: "Mr. Gupta (Landlord)", date: "2025-01-01", amount: 35000, paymentMethod: "Cheque", reference: "", notes: "" },
+  { id: 1, category: "Maintenance", description: "Store display maintenance", vendor: "Store Fixtures Ltd", date: "2025-01-20", amount: 8000, paymentMethod: "Bank Transfer", reference: "", notes: "" },
+  { id: 2, category: "Marketing", description: "Social media advertising", vendor: "Digital Marketing Pro", date: "2025-01-18", amount: 5000, paymentMethod: "UPI", reference: "", notes: "" },
+  { id: 3, category: "Transport", description: "Delivery logistics cost", vendor: "Fast Courier", date: "2025-01-15", amount: 12000, paymentMethod: "Cash", reference: "", notes: "" },
+  { id: 4, category: "Electricity", description: "Store electricity bill - January", vendor: "JVVNL", date: "2025-01-10", amount: 8500, paymentMethod: "UPI", reference: "", notes: "" },
+  { id: 5, category: "Rent", description: "Store rent - January", vendor: "Property Management", date: "2025-01-01", amount: 45000, paymentMethod: "Cheque", reference: "", notes: "" },
 ];
 
 const REVENUE_DATA = [
-  { day: "May 29", revenue: 1250000 },
-  { day: "May 30", revenue: 980000 },
-  { day: "May 31", revenue: 1420000 },
-  { day: "Jun 1", revenue: 1100000 },
-  { day: "Jun 2", revenue: 1396980 },
-  { day: "Jun 3", revenue: 1396980 },
-  { day: "Jun 4", revenue: 1421302 },
+  { day: "May 29", revenue: 125000 },
+  { day: "May 30", revenue: 98000 },
+  { day: "May 31", revenue: 142000 },
+  { day: "Jun 1", revenue: 110000 },
+  { day: "Jun 2", revenue: 139698 },
+  { day: "Jun 3", revenue: 136980 },
+  { day: "Jun 4", revenue: 142130 },
 ];
 
 const CATEGORY_DATA = [
-  { name: "Living Room", value: 45, color: "#378ADD" },
-  { name: "Dining Room", value: 18, color: "#1D9E75" },
-  { name: "Office", value: 20, color: "#2C2C2A" },
-  { name: "Decor", value: 8, color: "#BA7517" },
-  { name: "Other", value: 9, color: "#D85A30" },
+  { name: "Luxury", value: 28, color: "#378ADD" },
+  { name: "Designer", value: 22, color: "#1D9E75" },
+  { name: "Niche", value: 18, color: "#2C2C2A" },
+  { name: "Casual", value: 20, color: "#BA7517" },
+  { name: "Floral", value: 12, color: "#D85A30" },
 ];
 
 // --- HELPERS -----------------------------------------------------------------
@@ -528,6 +526,76 @@ const FormMessage = ({ msg }) => msg ? (
   }}>{msg.type === "error" ? "⚠ " : "✓ "}{msg.text}</div>
 ) : null;
 
+// --- THERMAL RECEIPT (Compact POS Receipt) ------------------------------------
+
+const ThermalReceipt = ({ invoiceNo, date, customer, items, subtotal, discount, tax, total, gstNo }) => {
+  return (
+    <div className="thermal-receipt" style={{ fontFamily: "monospace", fontSize: 11, lineHeight: 1.4, maxWidth: "320px", margin: "0 auto", padding: "10px", background: "#fff", color: "#000" }}>
+      {/* Header */}
+      <div style={{ textAlign: "center", marginBottom: 10, borderBottom: "1px dashed #000", paddingBottom: 8 }}>
+        <div style={{ fontSize: 13, fontWeight: "bold", marginBottom: 2 }}>POSPERFUME</div>
+        <div style={{ fontSize: 9 }}>Premium Fragrance Retail</div>
+        <div style={{ fontSize: 9 }}>Kochi, Kerala - 682014</div>
+        <div style={{ fontSize: 9 }}>Ph: 9876543210</div>
+      </div>
+
+      {/* Invoice Details */}
+      <div style={{ marginBottom: 8, fontSize: 10 }}>
+        <div>Invoice No: <strong>{invoiceNo}</strong></div>
+        <div>Date: {date}</div>
+        <div>Customer: {customer}</div>
+      </div>
+
+      {/* Items Table */}
+      <div style={{ marginBottom: 8, borderTop: "1px dashed #000", borderBottom: "1px dashed #000", paddingTop: 5, paddingBottom: 5 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 40px 60px", gap: 5, fontSize: 9, fontWeight: "bold", marginBottom: 5 }}>
+          <div>Item</div>
+          <div style={{ textAlign: "center" }}>Qty</div>
+          <div style={{ textAlign: "right" }}>Amount</div>
+        </div>
+        {items.map((item, i) => (
+          <div key={i} style={{ display: "grid", gridTemplateColumns: "1fr 40px 60px", gap: 5, fontSize: 9, marginBottom: 3 }}>
+            <div style={{ wordBreak: "break-word" }}>{item.name}</div>
+            <div style={{ textAlign: "center" }}>{item.qty || 1}</div>
+            <div style={{ textAlign: "right" }}>₹{(item.qty || 1) * item.price}</div>
+          </div>
+        ))}
+      </div>
+
+      {/* Totals */}
+      <div style={{ marginBottom: 8, fontSize: 10 }}>
+        <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, marginBottom: 3 }}>
+          <div>Subtotal:</div>
+          <div style={{ textAlign: "right" }}>₹{subtotal}</div>
+        </div>
+        {discount > 0 && (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, marginBottom: 3 }}>
+            <div>Discount:</div>
+            <div style={{ textAlign: "right" }}>-₹{discount}</div>
+          </div>
+        )}
+        {tax > 0 && (
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, marginBottom: 3 }}>
+            <div>GST (18%):</div>
+            <div style={{ textAlign: "right" }}>₹{tax}</div>
+          </div>
+        )}
+        <div style={{ borderTop: "1px dashed #000", paddingTop: 3, display: "grid", gridTemplateColumns: "1fr 80px", gap: 10, fontWeight: "bold", fontSize: 11 }}>
+          <div>Total:</div>
+          <div style={{ textAlign: "right" }}>₹{total}</div>
+        </div>
+      </div>
+
+      {/* Footer */}
+      <div style={{ textAlign: "center", fontSize: 9, borderTop: "1px dashed #000", paddingTop: 5, marginTop: 8 }}>
+        <div>Thank you for your purchase!</div>
+        <div>No Refund, Exchange within 7 days</div>
+        <div>Visit Again!</div>
+      </div>
+    </div>
+  );
+};
+
 // --- BRANDED DOCUMENT (Quotation / Invoice) ------------------------------------
 
 const DOC = {
@@ -660,113 +728,62 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
   const pages = paginateDocItems(items);
   let rowNo = 0;
   return (
-    <div className="branded-doc" style={{ display: "flex", flexDirection: "column", gap: 14, fontFamily: "'AppRupee', 'DM Sans', 'Segoe UI', sans-serif" }}>
+    <div className="branded-doc" style={{ display: "flex", flexDirection: "column", gap: 14, fontFamily: "Arial, sans-serif" }}>
       {pages.map((chunk, p) => {
         const isFirst = p === 0;
         const isLast = p === pages.length - 1;
         const startNo = rowNo;
         rowNo += chunk.length;
         return (
-      <div key={p} className="branded-page" style={{ background: DOC.bg, color: DOC.text, borderRadius: 12, overflow: "hidden" }}>
+      <div key={p} className="branded-page" style={{ background: "#fff", color: "#333", borderRadius: 4, overflow: "hidden", border: "1px solid #ddd" }}>
       {isFirst ? (<>
-      {/* Header — forest + elephant carrying timber */}
-      <div style={{ position: "relative", overflow: "hidden", padding: "22px 18px 18px" }}>
-        <DocImg src={DOC_IMG.elephant} style={{ position: "absolute", top: 0, right: 0, width: "48%", height: "100%", objectFit: "cover", objectPosition: "center 25%" }} />
-        <div style={{ position: "absolute", top: 0, right: 0, width: "48%", height: "100%", background: `linear-gradient(90deg, ${DOC.bg} 2%, rgba(22,49,29,0.35) 45%, rgba(22,49,29,0) 100%)` }} />
-        <div style={{ position: "relative", width: "64%", minWidth: 260 }}>
-          <div style={{ display: "flex", gap: 14, alignItems: "center", marginBottom: 18 }}>
-            <DocImg
-              src={DOC_IMG.logo}
-              style={{ width: 88, height: 88, objectFit: "contain", flexShrink: 0, mixBlendMode: "lighten" }}
-              fallback={
-                <div style={{ width: 78, height: 78, borderRadius: "50%", border: `3px solid ${DOC.gold}`, display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, position: "relative", background: DOC.panelDark }}>
-                  <span style={{ fontSize: 40, fontWeight: 800, color: DOC.gold, fontFamily: "Georgia, serif" }}>R</span>
-                  <span style={{ position: "absolute", left: -4, bottom: 6, fontSize: 15 }}>🌿</span>
-                </div>
-              }
-            />
-            <div>
-              <div style={{ fontSize: 40, fontWeight: 600, letterSpacing: 3, lineHeight: 1.05, color: "#fff", fontFamily: DOC_FONT.display }}>ROCKWOOD</div>
-              <div style={{ fontSize: 14, fontWeight: 600, color: DOC.gold, letterSpacing: 2.5, marginTop: 5, fontFamily: DOC_FONT.display }}>— TIMBER AND FURNITURES —</div>
-            </div>
-          </div>
-          <div style={{ display: "flex", gap: 14, flexWrap: "wrap" }}>
-            <div style={{ display: "flex", flexDirection: "column", gap: 9, fontSize: 12.5, fontWeight: 500 }}>
-              <div style={{ display: "flex", alignItems: "center", gap: 9 }}><GoldDot><Icon name="phone" size={12} color={DOC.bg} /></GoldDot> Office - 818-999-1978</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 9 }}><GoldDot><Icon name="phone" size={12} color={DOC.bg} /></GoldDot> Manager - 8270293059</div>
-              <div style={{ display: "flex", alignItems: "center", gap: 9 }}><GoldDot><span style={{ fontSize: 11, fontWeight: 800 }}>@</span></GoldDot> rockwoodsince1978@gmail.com</div>
-            </div>
-            <div style={{ borderLeft: `1.5px solid ${DOC.goldDim}`, paddingLeft: 14, fontSize: 12.5, fontWeight: 500, lineHeight: 1.75 }}>
-              <div style={{ display: "flex", gap: 9 }}>
-                <GoldDot><Icon name="pin" size={13} color={DOC.bg} /></GoldDot>
-                <span>GODOWN THOTTAM,<br />THEN THIRUPATHY 4 ROAD,<br />BELLATHY,<br />METTUPALAYAM - 03</span>
-              </div>
-            </div>
-          </div>
+      {/* Simple Header */}
+      <div style={{ borderBottom: "2px solid #333", padding: "20px", textAlign: "center", background: "#f9f9f9" }}>
+        <div style={{ fontSize: 20, fontWeight: "bold", marginBottom: 5, color: "#333" }}>POSPERFUME</div>
+        <div style={{ fontSize: 12, color: "#666", lineHeight: 1.6, marginBottom: 10 }}>
+          Premium Fragrance Retail<br />
+          123 Fragrance Lane, Kochi, Kerala - 682014<br />
+          Phone: 9876543210 | Email: sales@posperfume.com
         </div>
+        <div style={{ fontSize: 16, fontWeight: "bold", marginTop: 10, color: "#333" }}>{docType}</div>
       </div>
       </>) : (
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px 12px" }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <DocImg src={DOC_IMG.logo} style={{ width: 42, height: 42, objectFit: "contain", mixBlendMode: "lighten" }} />
-          <div>
-            <div style={{ fontSize: 19, fontWeight: 600, letterSpacing: 2, lineHeight: 1.1, color: "#fff", fontFamily: DOC_FONT.display }}>ROCKWOOD</div>
-            <div style={{ fontSize: 9, fontWeight: 600, color: DOC.gold, letterSpacing: 1.5, fontFamily: DOC_FONT.display }}>— TIMBER AND FURNITURES —</div>
-          </div>
-        </div>
-        <div style={{ fontSize: 12, fontWeight: 600, color: DOC.textDim, letterSpacing: 0.5 }}>{docType} • {docNo} • Page {p + 1} of {pages.length}</div>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 20px", borderBottom: "1px solid #ddd", background: "#f9f9f9" }}>
+        <div style={{ fontSize: 14, fontWeight: "bold", color: "#333" }}>POSPERFUME</div>
+        <div style={{ fontSize: 11, color: "#666" }}>{docType} • {docNo} • Page {p + 1} of {pages.length}</div>
       </div>
       )}
 
       <div style={{ padding: isFirst ? "2px 16px 16px" : "0 16px 16px" }}>
 
       {isFirst && (<>
-      {/* Title band */}
-      <DocPanel style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "14px 16px", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 14 }}>
-          <div style={{ width: 54, height: 54, borderRadius: 12, border: `2px solid ${DOC.gold}`, background: DOC.panelDark, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Icon name="quote" size={28} color={DOC.gold} />
-          </div>
-          <div style={{ fontSize: 38, fontWeight: 600, letterSpacing: 3, color: "#fff", fontFamily: DOC_FONT.display }}>{docType}</div>
+      {/* Metadata section */}
+      <div style={{ padding: "15px 20px", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 15, fontSize: 12, borderBottom: "1px solid #ddd" }}>
+        <div>
+          <div style={{ fontWeight: "bold", color: "#333" }}>{docType} NO:</div>
+          <div style={{ color: "#666" }}>{docNo}</div>
         </div>
-        <div style={{ display: "flex", flexDirection: "column", gap: 7 }}>
-          {[["BILL NO.", docNo], ["DATE", date]].map(([l, v]) => (
-            <div key={l} style={{ display: "flex", borderRadius: 8, overflow: "hidden", border: `1px solid ${DOC.goldDim}`, fontSize: 13.5 }}>
-              <span style={{ background: DOC.gold, color: DOC.bg, fontWeight: 700, padding: "6px 14px", minWidth: 86, fontFamily: DOC_FONT.display, letterSpacing: 0.5 }}>{l}</span>
-              <span style={{ padding: "6px 16px", fontWeight: 600, background: DOC.panelDark, minWidth: 140, letterSpacing: 1 }}>{v}</span>
-            </div>
-          ))}
+        <div>
+          <div style={{ fontWeight: "bold", color: "#333" }}>DATE:</div>
+          <div style={{ color: "#666" }}>{date}</div>
         </div>
-      </DocPanel>
+      </div>
 
-      {/* Customer band */}
-      <DocPanel style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", marginBottom: 12, flexWrap: "wrap", gap: 10 }}>
-        <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 10, border: `2px solid ${DOC.gold}`, background: DOC.panelDark, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Icon name="user" size={20} color={DOC.gold} />
-          </div>
-          <div>
-            <div style={{ fontSize: 13, color: DOC.gold, fontWeight: 600 }}>To</div>
-            <div style={{ fontSize: 20, fontWeight: 600, color: "#fff", fontFamily: DOC_FONT.display, letterSpacing: 1 }}>{customerName}</div>
-          </div>
-        </div>
-        <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-          <div style={{ width: 44, height: 44, borderRadius: 10, border: `2px solid ${DOC.gold}`, background: DOC.panelDark, display: "flex", alignItems: "center", justifyContent: "center" }}>
-            <Icon name="quote" size={20} color={DOC.gold} />
-          </div>
-          <div style={{ background: DOC.gold, color: DOC.bg, fontWeight: 700, fontSize: 19, letterSpacing: 2, padding: "9px 26px", borderRadius: 10, fontFamily: DOC_FONT.display }}>{docType}</div>
-        </div>
-      </DocPanel>
+      {/* Customer section */}
+      <div style={{ padding: "15px 20px", borderBottom: "1px solid #ddd" }}>
+        <div style={{ fontWeight: "bold", color: "#333", marginBottom: 5, fontSize: 12 }}>CUSTOMER:</div>
+        <div style={{ color: "#666", fontSize: 13 }}>{customerName}</div>
+      </div>
       </>)}
 
       {/* Items table */}
-      <div style={{ border: `1.5px solid ${DOC.goldDim}`, borderRadius: 12, overflow: "hidden", marginBottom: 12 }}>
+      <div style={{ borderRadius: 4, overflow: "hidden", marginBottom: 12, border: "1px solid #ddd" }}>
         <div style={{ overflowX: "auto" }}>
-          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13.5 }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
             <thead>
               <tr>
-                {["S.NO", "ITEM DESCRIPTION", "ITEMS", "AMOUNT (₹)"].map((h, i) => (
-                  <th key={h} style={{ padding: "10px 14px", textAlign: i === 0 ? "center" : i === 3 ? "right" : i === 2 ? "center" : "left", fontSize: 12, fontWeight: 700, letterSpacing: 1, color: DOC.text, borderBottom: `1.5px solid ${DOC.goldDim}`, background: DOC.panelDark }}>{h}</th>
+                {["S.NO", "ITEM NAME", "CATEGORY", "QTY", "UNIT PRICE", "AMOUNT"].map((h, i) => (
+                  <th key={h} style={{ padding: "10px", textAlign: i === 0 ? "center" : i >= 3 ? "right" : "left", fontSize: 11, fontWeight: 700, color: "#333", borderBottom: "1px solid #ddd", background: "#f0f0f0" }}>{h}</th>
                 ))}
               </tr>
             </thead>
@@ -777,54 +794,45 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
                 const amount = qty * price;
                 return (
                   <tr key={i}>
-                    <td style={{ padding: "11px 14px", textAlign: "center", borderBottom: `1px solid rgba(233,166,58,0.25)`, borderRight: `1px solid rgba(233,166,58,0.25)` }}>{startNo + i + 1}.</td>
-                    <td style={{ padding: "11px 14px", borderBottom: `1px solid rgba(233,166,58,0.25)`, borderRight: `1px solid rgba(233,166,58,0.25)` }}>{it.name || "—"}</td>
-                    <td style={{ padding: "11px 14px", textAlign: "center", color: DOC.textDim, borderBottom: `1px solid rgba(233,166,58,0.25)`, borderRight: `1px solid rgba(233,166,58,0.25)` }}>{itemsHaveQty ? qty : "—"}</td>
-                    <td style={{ padding: "11px 14px", textAlign: "right", fontWeight: 600, borderBottom: `1px solid rgba(233,166,58,0.25)` }}>{isNaN(amount) ? "0" : amount.toLocaleString("en-IN")}</td>
+                    <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #eee", color: "#666" }}>{startNo + i + 1}</td>
+                    <td style={{ padding: "10px", borderBottom: "1px solid #eee", color: "#333", fontWeight: 500 }}>{it.name || "—"}</td>
+                    <td style={{ padding: "10px", borderBottom: "1px solid #eee", color: "#666", fontSize: 11 }}>{it.category || "—"}</td>
+                    <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #eee", color: "#666" }}>{itemsHaveQty ? qty : "—"}</td>
+                    <td style={{ padding: "10px", textAlign: "right", borderBottom: "1px solid #eee", color: "#666" }}>₹{price.toLocaleString("en-IN")}</td>
+                    <td style={{ padding: "10px", textAlign: "right", borderBottom: "1px solid #eee", color: "#333", fontWeight: 600 }}>₹{isNaN(amount) ? "0" : amount.toLocaleString("en-IN")}</td>
                   </tr>
                 );
               })}
               {isLast && (<>
-              <tr>
-                <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600, borderTop: `1px solid rgba(233,166,58,0.25)` }}>TOTAL ITEMS</td>
-                <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600, borderTop: `1px solid rgba(233,166,58,0.25)` }}>{Math.round(totalItems) || 0}</td>
+              <tr style={{ borderTop: "2px solid #333" }}>
+                <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>Subtotal:</td>
+                <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>₹{Math.round(totals.subtotal || 0).toLocaleString("en-IN")}</td>
               </tr>
               {(totals.discount || 0) > 0 && (
                 <tr>
-                  <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                  <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600 }}>DISCOUNT</td>
-                  <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600 }}>-{Math.round(totals.discount || 0).toLocaleString("en-IN")}</td>
+                  <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>Discount:</td>
+                  <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>-₹{Math.round(totals.discount || 0).toLocaleString("en-IN")}</td>
                 </tr>
               )}
               {(totals.tax || 0) > 0 && (
                 <tr>
-                  <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                  <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600 }}>TAX</td>
-                  <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600 }}>{Math.round(totals.tax || 0).toLocaleString("en-IN")}</td>
+                  <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>GST (18%):</td>
+                  <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#333" }}>₹{Math.round(totals.tax || 0).toLocaleString("en-IN")}</td>
                 </tr>
               )}
-              <tr>
-                <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600 }}>TOTAL AMOUNT</td>
-                <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600 }}>{Math.round(totals.subtotal || 0).toLocaleString("en-IN")}</td>
-              </tr>
-              <tr>
-                <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                <td style={{ padding: "10px 14px", textAlign: "center", fontWeight: 800, background: DOC.gold, color: DOC.bg }}>TOTAL {docType}</td>
-                <td style={{ padding: "10px 14px", textAlign: "right", fontWeight: 800, background: DOC.gold, color: DOC.bg }}>{Math.round(totals.total || 0).toLocaleString("en-IN")}</td>
+              <tr style={{ background: "#f9f9f9", borderTop: "2px solid #333", borderBottom: "2px solid #333" }}>
+                <td colSpan={4} style={{ padding: "12px", textAlign: "right", fontWeight: 700, color: "#333", fontSize: 14 }}>TOTAL {docType}:</td>
+                <td colSpan={2} style={{ padding: "12px", textAlign: "right", fontWeight: 700, color: "#333", fontSize: 14 }}>₹{Math.round(totals.total || 0).toLocaleString("en-IN")}</td>
               </tr>
               {advance && advance.amount > 0 && (
                 <>
                   <tr>
-                    <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                    <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 600, color: "#8FD6A8" }}>ADVANCE PAID</td>
-                    <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 600, color: "#8FD6A8" }}>-{advance.amount.toLocaleString("en-IN")}</td>
+                    <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#28a745" }}>Advance Paid:</td>
+                    <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 600, color: "#28a745" }}>-₹{advance.amount.toLocaleString("en-IN")}</td>
                   </tr>
                   <tr>
-                    <td colSpan={2} style={{ borderRight: `1px solid rgba(233,166,58,0.25)` }}></td>
-                    <td style={{ padding: "9px 14px", textAlign: "center", fontWeight: 700, color: DOC.goldLight }}>BALANCE DUE</td>
-                    <td style={{ padding: "9px 14px", textAlign: "right", fontWeight: 700, color: DOC.goldLight }}>{advance.balance.toLocaleString("en-IN")}</td>
+                    <td colSpan={4} style={{ padding: "10px", textAlign: "right", fontWeight: 700, color: "#333" }}>Balance Due:</td>
+                    <td colSpan={2} style={{ padding: "10px", textAlign: "right", fontWeight: 700, color: "#333" }}>₹{advance.balance.toLocaleString("en-IN")}</td>
                   </tr>
                 </>
               )}
@@ -835,45 +843,40 @@ const BrandedDoc = ({ docType, docNo, date, customerName, items, totals, advance
       </div>
 
       {!isLast && (
-        <div style={{ textAlign: "right", fontSize: 11.5, fontStyle: "italic", color: DOC.goldLight, padding: "0 4px 2px" }}>Continued on next page ›</div>
+        <div style={{ textAlign: "right", fontSize: 11, fontStyle: "italic", color: "#999", padding: "10px" }}>Continued on next page ›</div>
       )}
 
       {isLast && (<>
-      {/* Note — stamp logo | notes | sofa picture */}
-      <DocPanel style={{ marginBottom: 12, overflow: "hidden", position: "relative", display: "flex", gap: 12, alignItems: "center", padding: "12px 14px", minHeight: 168 }}>
-        <DocImg src={DOC_IMG.stamp} style={{ width: 96, height: 96, objectFit: "contain", flexShrink: 0, mixBlendMode: "lighten" }} />
-        <div style={{ flex: 1, minWidth: 0, position: "relative", zIndex: 1, paddingRight: 85 }}>
-          <div style={{ fontSize: 13.5, fontWeight: 700, color: DOC.gold, marginBottom: 5, fontFamily: DOC_FONT.display, letterSpacing: 1 }}>{docType} NOTE:</div>
-          <ul style={{ margin: 0, paddingLeft: 16, fontSize: 11.5, lineHeight: 1.65, color: DOC.textDim }}>
-            <li>This {docType.toLowerCase()} is valid for 15 days from the date of issue.</li>
-            <li>Prices are inclusive of loading at godown.</li>
-            <li>Transportation, taxes and installation are extra (if applicable).</li>
-            <li>Advance payment may be required to confirm the order.</li>
-            <li>Subject to availability of stock.</li>
-            <li>Thank you for considering Rockwood Timber and Furnitures.</li>
-          </ul>
-          <div style={{ marginTop: 7 }}>
-            <div style={{ fontSize: 10, fontWeight: 700, color: DOC.gold, letterSpacing: 1.5, fontFamily: DOC_FONT.display }}>PREPARED BY</div>
-            <div style={{ fontSize: 17, fontWeight: 600, color: "#fff", letterSpacing: 2, fontFamily: DOC_FONT.display }}>ROCKWOOD</div>
-            <div style={{ fontSize: 10.5, color: DOC.textDim }}>🗓 {date}</div>
-          </div>
-        </div>
-        <DocImg src={DOC_IMG.sofa} style={{ position: "absolute", right: 0, bottom: 0, width: 240, mixBlendMode: "lighten", WebkitMaskImage: "linear-gradient(105deg, transparent 3%, #000 32%)", maskImage: "linear-gradient(105deg, transparent 3%, #000 32%)" }} />
-      </DocPanel>
-
-      {/* Ribbon */}
-      <div style={{ textAlign: "center", fontSize: 13, fontWeight: 700, letterSpacing: 2, color: DOC.goldLight, border: `1px solid ${DOC.goldDim}`, borderRadius: 8, padding: "8px 10px", marginBottom: 12, fontFamily: DOC_FONT.serif }}>
-        QUALITY WOOD &nbsp;•&nbsp; FINE CRAFTSMANSHIP &nbsp;•&nbsp; TIMELESS FURNITURE
+      {/* Terms & Conditions */}
+      <div style={{ padding: "15px 20px", borderTop: "1px solid #ddd", fontSize: 11 }}>
+        <div style={{ fontWeight: "bold", color: "#333", marginBottom: 8 }}>{docType} TERMS & CONDITIONS:</div>
+        <ul style={{ margin: 0, paddingLeft: 18, fontSize: 11, lineHeight: 1.6, color: "#666" }}>
+          <li>This {docType.toLowerCase()} is valid for 15 days from the date of issue.</li>
+          <li>Prices are inclusive of goods and GST as applicable.</li>
+          <li>Transportation and installation are extra if applicable.</li>
+          <li>Advance payment may be required to confirm the order.</li>
+          <li>Subject to availability of stock.</li>
+          <li>All products are genuine and supplied with authenticity certificates.</li>
+        </ul>
       </div>
 
-      {/* Footer badges */}
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-        {[["tree", "SOLID WOOD", "100% NATURAL"], ["chair", "ELEGANT", "DESIGNS"], ["tool", "EXPERT", "CRAFTSMANSHIP"], ["shieldCheck", "QUALITY", "YOU CAN TRUST"]].map(([ic, l1, l2], i) => (
-          <div key={i} style={{ flex: "1 1 110px", display: "flex", alignItems: "center", gap: 9, borderRight: i < 3 ? `1px solid ${DOC.goldDim}` : "none", paddingRight: 8 }}>
-            <span style={{ width: 34, height: 34, borderRadius: "50%", background: DOC.gold, display: "inline-flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}><Icon name={ic} size={17} color={DOC.bg} /></span>
-            <span style={{ fontSize: 10.5, fontWeight: 700, letterSpacing: 0.5, color: DOC.goldLight, lineHeight: 1.5, fontFamily: DOC_FONT.serif }}>{l1}<br /><span style={{ fontSize: 9.5, color: DOC.gold }}>{l2}</span></span>
+      {/* Footer - Bank Details & Signature */}
+      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, padding: "15px 20px", borderTop: "1px solid #ddd" }}>
+        <div style={{ fontSize: 11 }}>
+          <div style={{ fontWeight: "bold", color: "#333", marginBottom: 8 }}>BANK DETAILS:</div>
+          <div style={{ color: "#666", lineHeight: 1.6, fontSize: 10 }}>
+            <div><strong>Account Name:</strong> PosPerfume Retail Pvt Ltd</div>
+            <div><strong>Account No:</strong> 1234567890</div>
+            <div><strong>IFSC Code:</strong> SBIN0001234</div>
+            <div><strong>Branch:</strong> Kochi Main Branch</div>
           </div>
-        ))}
+        </div>
+        <div style={{ textAlign: "right", fontSize: 11 }}>
+          <div style={{ marginTop: 30, borderTop: "1px solid #333", paddingTop: 20 }}>
+            <div style={{ color: "#666", fontSize: 10 }}>Authorized Signature</div>
+          </div>
+          <div style={{ marginTop: 5, color: "#666", fontSize: 10 }}>PosPerfume Management</div>
+        </div>
       </div>
       </>)}
       </div>
@@ -1361,25 +1364,37 @@ function Transactions({ transactions, setTransactions, settings }) {
 
       {viewTxn && (() => {
         const products = viewTxn.products || [];
-        const subtotal = products.reduce((s, p) => s + p.qty * p.price, 0);
+        const subtotal = products.reduce((s, p) => s + (p.qty || 1) * p.price, 0);
         const diff = viewTxn.total - subtotal;
-        const totals = { subtotal, discount: diff < 0 ? -diff : 0, tax: diff > 0 ? diff : 0, total: viewTxn.total };
-        const displayDate = new Date(viewTxn.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+        const discount = diff < 0 ? -diff : 0;
+        const tax = diff > 0 ? diff : 0;
+        const displayDate = typeof viewTxn.date === 'string' ? viewTxn.date.split(',')[0] : new Date(viewTxn.date).toLocaleDateString("en-GB", { day: "2-digit", month: "short", year: "numeric" });
+        const printThermalReceipt = () => {
+          const el = document.querySelector(".thermal-receipt");
+          if (el) {
+            const w = window.open("", "_blank", "width=400,height=600");
+            w.document.write("<html><head><title>Receipt</title><style>body{font-family:monospace;margin:0;padding:10px;font-size:11px;}</style></head><body>" + el.innerHTML + "</body></html>");
+            w.document.close();
+            setTimeout(() => w.print(), 250);
+          }
+        };
         return (
-          <Modal title="" onClose={() => setViewTxn(null)} width={800}>
-            <A4DocWrap>
-              <BrandedDoc
-                docType="INVOICE"
-                docNo={viewTxn.invoiceNo || viewTxn.id}
+          <Modal title="Transaction Receipt" onClose={() => setViewTxn(null)} width={400}>
+            <div style={{ background: "#f5f5f5", padding: 20, borderRadius: 4, marginBottom: 15 }}>
+              <ThermalReceipt
+                invoiceNo={viewTxn.invoiceNo || viewTxn.id}
                 date={displayDate}
-                customerName={viewTxn.customer}
+                customer={viewTxn.customer}
                 items={products}
-                totals={totals}
+                subtotal={Math.round(subtotal)}
+                discount={Math.round(discount)}
+                tax={Math.round(tax)}
+                total={Math.round(viewTxn.total)}
               />
-            </A4DocWrap>
-            <div style={{ marginTop: 12, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            </div>
+            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", paddingTop: 12, borderTop: "1px solid #ddd" }}>
               <span style={S.badge(statusBg(viewTxn.status), statusColor(viewTxn.status))}>{viewTxn.status}</span>
-              <button style={S.btn} onClick={printBrandedDoc}><Icon name="print" size={15} /> Print</button>
+              <button style={S.btn} onClick={printThermalReceipt}><Icon name="print" size={15} /> Print Receipt</button>
             </div>
           </Modal>
         );
@@ -5271,7 +5286,7 @@ function Login({ employees, onLogin }) {
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><rect x="2" y="3" width="20" height="14" rx="2" /><path d="M8 21h8M12 17v4" /></svg>
           </div>
           <div>
-            <div style={{ ...S.logoText, fontSize: 17 }}>RockWood</div>
+            <div style={{ ...S.logoText, fontSize: 17 }}>PosPerfume</div>
             <div style={S.logoSub}>POS System</div>
           </div>
         </div>
@@ -5367,7 +5382,7 @@ export default function App() {
       const stored = localStorage.getItem("rockwood_settings");
       if (stored) return JSON.parse(stored);
     } catch (e) {}
-    return { name: "RockWood", currency: "₹", tax: "8", address: "Tamil Nadu, India" };
+    return { name: "PosPerfume", currency: "₹", tax: "8", address: "Tamil Nadu, India" };
   });
   const [autoPrint, setAutoPrint] = useState(() => {
     try {
@@ -5555,12 +5570,12 @@ export default function App() {
         </button>
         <div style={{ ...S.sidebarTop, padding: mini ? "20px 0 12px" : S.sidebarTop.padding }}>
           <div style={{ ...S.logo, justifyContent: mini ? "center" : "flex-start", gap: mini ? 0 : 10 }}>
-            <div style={S.logoIcon} title="RockWood POS">
+            <div style={S.logoIcon} title="PosPerfume POS">
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" strokeWidth="2.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
             </div>
             {!mini && (
               <div>
-                <div style={S.logoText}>RockWood</div>
+                <div style={S.logoText}>PosPerfume</div>
                 <div style={S.logoSub}>POS System</div>
               </div>
             )}
@@ -5628,7 +5643,7 @@ export default function App() {
               <div style={{ display: "flex", gap: 10 }}>
                 <button style={S.btn} onClick={() => window.print()}><Icon name="print" size={15} /> Print</button>
                 <button style={S.btn} onClick={() => exportCSV("rockwood-reports.csv", ["Report Type", "Metric", "Value", "Date"], [["Sales Overview", "Total Revenue", fmt(transactions.reduce((s, t) => s + (t.status === "COMPLETED" ? t.total : 0), 0), settings.currency), new Date().toLocaleDateString()]])}><Icon name="download" size={15} /> Export CSV</button>
-                <button style={S.btnPrimary} onClick={() => { const url = window.location.href; if (navigator.share) { navigator.share({ title: "RockWood Report", url: url }); } else { alert("Report URL: " + url + "\n\nCopy this URL to share the report"); } }}><Icon name="refresh" size={15} /> Share Report</button>
+                <button style={S.btnPrimary} onClick={() => { const url = window.location.href; if (navigator.share) { navigator.share({ title: "PosPerfume Report", url: url }); } else { alert("Report URL: " + url + "\n\nCopy this URL to share the report"); } }}><Icon name="refresh" size={15} /> Share Report</button>
               </div>
             )}
           </div>
